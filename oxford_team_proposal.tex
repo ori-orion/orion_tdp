@@ -95,21 +95,22 @@ The SCS builds upon standard ROS components to provide the following capabilitie
 
 The robots used in the STRANDS Project did not have manipulation capabilities, therefore the SCS does not provide software to support this. To deliver these capabilities we will start from \teamori{} member Lars Kunze's previous experience of knowledge-enabled manipulation~\cite{kunze15aij}. This previous work resulted in a system which could grasp an egg (\url{https://www.youtube.com/watch?v=jLz87H4q3hU}) and make a pancake (\url{https://www.youtube.com/watch?v=YQs5gRei8k4}).
 
-\subsection{Learning new skills}
-The robot will require a number of key skills to successfully perform a wide
+\subsection{Manipulation -- Learning new skills}
+In the context of manipulation, the robot will require a number of key skills 
+to successfully perform a wide
 variety of tasks that involve interaction with the environment or other
-agents (Fig. \ref{fig:baxter_water_task}), eg. pushing buttons, tuning handles, grasping and passing objects, etc. %Predicting and manually 
+agents (Figure \ref{fig:baxter_water_task}), eg. pushing buttons, tuning handles, grasping and passing objects, etc. %Predicting and manually 
 %designing in advance such a skill-set is only feasible for robots that perform 
 %a narrow set of specific functions. 
 We aim to build in our framework the ability
 to learn and refine new skills as tasks change or as new tasks need to be added
 the task repertoire. Such capability will be based on \teamori{} 
 member Ioannis Havoutis' background in learning, synthesis and control of 
-complex motions \cite{Havoutis16SSRR}. Skill representations
+complex motions \cite{havoutis13ijrr,Havoutis16SSRR}. Skill representations
 are learnt from demonstrations---allowing also the use by non-experts---using a probabilistic generative encoding, combining Gaussian 
 Mixture Models (GMMs) and Hidden semi-Markov Models (HSMMs)
 \cite{Havoutis17ICRA}. Motion generation is formulated as an optimal control
-problem that can adapt to changing task parametrizations on-line \cite{Zeestraten17IROS,Zeestraten2017-RAL}.
+problem that can adapt to changing task parametrizations on-line \cite{Zeestraten17IROS,Zeestraten2017-RAL} (\url{https://youtu.be/NiRPE0egymk}).
 
 \begin{figure*}[!tbh]
 	\centering
@@ -122,7 +123,7 @@ problem that can adapt to changing task parametrizations on-line \cite{Zeestrate
 	\label{fig:baxter_water_task}
 \end{figure*}
 
-\subsection{Naviagtion(?)}
+\subsection{Navigation(?)}
 ...
 
 \paragraph{Capabilities}
@@ -143,7 +144,9 @@ problem that can adapt to changing task parametrizations on-line \cite{Zeestrate
     \includegraphics[width=.43\columnwidth]{images/betty.jpg}
     \includegraphics[width=.55\columnwidth,clip,trim=10ex 20ex 10ex 20ex]{images/viewplanning_at_tsc.png}
   \end{center}   
-  \caption{View planning in a real-world office environment (STRANDS project).}
+  \caption{\textit{Left}: The STRANDS autonomous mobile robot in a real-world
+  office environment. \textit{Right}: View planning for object detection in the
+  office environment.}
   \label{fig:mk}
   \vspace{-3ex}
 \end{figure}
