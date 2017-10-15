@@ -16,6 +16,8 @@
 
 \usepackage{lipsum}
 \newcommand{\BnL}[1][1em]{ \includegraphics[width=#1]{images/bnl.jpg} }
+\newcommand{\teamori}{Team Oxford}
+
 
 \begin{document}
 
@@ -31,8 +33,13 @@
 
 \begin{abstract}
 This document outlines the organization, architecture and goals of our
+<<<<<<< HEAD
 RoboCup@Home Domestic Standard Platform League team, \textit{Team Oxford}(?). 
 We are a new team that aspires to compete in international competitions,
+=======
+RoboCup@Home Domestic Standard Platform League team, \textit{\teamori}(?). 
+We are a new team that aspires to complete in international completions,
+>>>>>>> added strands stuff
 starting from 2018. Our research interests are centered around long term
 autonomy, mobility, robot learning and knowledge representation. 
 Advances in these directions will enable service robots to interact with humans
@@ -63,17 +70,23 @@ The Proposal should go into detail about the technical and scientific approach
 %\cite{havoutis13ijrr,Winkler2015,havoutis15clawar,Mastalli2015,Havoutis16SSRR,Zeestraten2017-RAL,Havoutis17ICRA,Zeestraten17IROS,Mastalli17ICRA}.
 
 \section{Introduction}
-\textit{Team Oxford} is a new team created within the Oxford Robotics Institute
-(ORI) at the University of Oxford. The team consists of graduate students,
-robotics researchers and faculty members of ORI.
 
+\textit{\teamori{}} is a new team created within the Oxford Robotics Institute
+(ORI) at the University of Oxford. The team consists of undergraduate and graduate students; robotics researchers; and faculty members of ORI. ORI has a significant track record in \emph{field robotics} and real-world trials of autonomous systems. It also has a team of professional hardware and software engineers. This experience and support will be leveraged to create a RoboCup@Team capable of delivering across the whole competition. The Domestic Standard Platform League (DSPL) affords a tangible new domain in which existing ORI research can be applied, and which provides new challenges for the group. 
 
-The Domestic Standard Platform League affords a very tangible and 
-interesting/challenging domain for our research work. In addition, the HSR
 
 \section{Team Composition and Research Interests}
 
 \section{Capabilities and Goals}
+
+
+The capabilities of our DSPL system will build upon the capabilities developed over the last four years within the EU STRANDS Project\footnote{\url{http://strands-project.eu}}. Key members of this project (Nick Hawes, Lars Kunze, Bruno Lacerda) have recently moved to ORI will actively engage with \teamori. The STRANDS Project deployed autonomous mobile robots (MetraLabs SCITOS A5s) in a range of human-populated environments for long durations\cite{strands@ram}. These robots provided a range of services to real users similar to the tasks required in the DSPL, and therefore the enabling software used on the robots (the ROS-based \emph{STRANDS Core System} (SCS)) gives \teamori{} the ideal basis for DSPL participation. The SCS is open source, and creating a team for the DSPL will contribute to the continued maintainence of this substantial code base which is useful for our entire community. Although originally developed for MetraLabs robots, the SCS has recently been ported to other robots, and \teamori{} will contribute an open port of this software to the Toyota HSR. 
+
+The SCS builds upon standard ROS components to provide the following capabilities, all of which have been tested in long-term deployments in real user environments: topological, human-aware robust navigation; object dectection, identification and classification; autonomous online object learning; human detection, skeleton tracking, and activity analysis; basic human-robot interaction via speech and screen; and goal management and task planning. Our capabilities for person tracking~\cite{dondrup2015tracker} can be seen online\footnote{\url{https://youtu.be/zdnvhQU1YNo}} and formed the basis of many interactive behaviours, including social navigation, and activity learning and recognition~\cite{duckworth_aamas2016}, which are relevant to DSPL. Advanced object perception will be provided by our approach which combines view planning (see Figure~\ref{fig:mk}), top-down reasoning and bottom-up processing for scene understanding \cite{kunze14topdown}, predicts object locations based on qualitative spatial models\cite{kunze14bootstrapping}, and performs object discovery and classifcation via deep vision and web-mining \cite{aloof@icra17}.
+
+The robots used in the STRANDS Project did not have manipulation capabilities, therefore the SCS does not provide software to support this. To deliver these capabilities we will start from \teamori{} member Lars Kunze's previous experience of knowledge-enabled manipulation~\cite{kunze15aij}. This previous work resulted in a system which could grasp an egg (\url{https://www.youtube.com/watch?v=jLz87H4q3hU}) and make a pancake (\url{https://www.youtube.com/watch?v=YQs5gRei8k4}).
+
+
 
 \begin{figure*}[!ht]
 	\centering
@@ -86,26 +99,8 @@ all:a}}
 
 \paragraph{Capabilities}
 \begin{itemize}
-    \item Knowledge-enabled Perception
-        \begin{itemize}
-            \item Combined top-down reasoning and bottom-up perception for scene understanding \cite{kunze14topdown}, predicting object locations based on qualitative spatial models\cite{kunze14bootstrapping}, object discovery via deep vision and web-mining \cite{aloof@icra17}, joint object classification using situated robot perception and web-mining \cite{aloof@ecai16}
-        \end{itemize}
-    \item Perception Planning
-        \begin{itemize}
-            \item View planning under time constraints: \cite{kunze17ecmr}
-        \end{itemize}
+
     \item Manipulation
-        \begin{itemize}
-            \item KR and Reasoning about Everyday Object Manipulation: \cite{kunze15aij} \newline Videos: 
-                \begin{itemize}
-                    \item grasping an egg: \url{https://www.youtube.com/watch?v=jLz87H4q3hU} 
-                    \item making a pancake: \url{https://www.youtube.com/watch?v=AfVHMUK35w8}, \url{https://www.youtube.com/watch?v=YQs5gRei8k4}
-                \end{itemize}
-        \end{itemize}
-    \item Human-Robot Interaction
-        \begin{itemize}
-            \item Generation of Referring Expression on Desktop Scenes: \cite{tufts17reg}
-        \end{itemize}
     \item Integrated Robot Systems
         \begin{itemize}
             \item STRANDS project: \cite{strands@ram}
