@@ -8,6 +8,7 @@
 \usepackage{amssymb}
 \usepackage[utf8]{inputenc}
 \usepackage{url}
+\usepackage{breakurl}
 \usepackage{float}
 \usepackage{amsmath}
 \usepackage{graphicx}
@@ -17,7 +18,6 @@
 \usepackage{lipsum}
 \newcommand{\BnL}[1][1em]{ \includegraphics[width=#1]{images/bnl.jpg} }
 \newcommand{\teamori}{Team Oxford}
-
 
 \begin{document}
 
@@ -65,7 +65,6 @@ The Proposal should go into detail about the technical and scientific approach
 %\cite{havoutis13ijrr,Winkler2015,havoutis15clawar,Mastalli2015,Havoutis16SSRR,Zeestraten2017-RAL,Havoutis17ICRA,Zeestraten17IROS,Mastalli17ICRA}.
 
 \section{Introduction}
-<<<<<<< HEAD
 \textit{\teamori{}} is a new team created within the Oxford Robotics Institute
 (ORI) at the University of Oxford. The team consists of undergraduate and
 graduate students; robotics researchers; and faculty members of ORI. We come
@@ -75,20 +74,21 @@ and real-world trials of autonomous systems. It also has a team of professional
 hardware and software engineers. This experience and support will be leveraged
 to create a RoboCup@Home team capable of delivering across the whole
 competition. 
+
+The Toyota Human Support Robot (HSR) will allow us to focus on developing the
+intelligence required for successfully completing the Robocup@Home tasks, 
+without the added burden of building and maintaining a custom platform.
 The Domestic Standard Platform League (DSPL) affords a tangible new domain in
 which existing ORI research can be applied, and which provides new challenges
 for the group. 
 
+
+\section{Team Composition}
+
 The team is lead by Prof. Nick Hawes, who has extensive background in
 intelligent autonomous robots that can work with or for humans.
-The Toyota Human Support Robot (HSR) will allow us to focus on developing the
-intelligence required for successfully completing the Robocup@Home tasks, 
-without the added burden of building and maintaining a custom platform.
-
-\section{Team Composition and Research Interests}
 
 \section{Capabilities and Goals}
-
 
 The capabilities of our DSPL system will build upon the capabilities developed over the last four years within the EU STRANDS Project\footnote{\url{http://strands-project.eu}}. Key members of this project (Nick Hawes, Lars Kunze, Bruno Lacerda) have recently moved to ORI will actively engage with \teamori. The STRANDS Project deployed autonomous mobile robots (MetraLabs SCITOS A5s) in a range of human-populated environments for long durations\cite{strands@ram}. These robots provided a range of services to real users similar to the tasks required in the DSPL, and therefore the enabling software used on the robots (the ROS-based \emph{STRANDS Core System} (SCS)) gives \teamori{} the ideal basis for DSPL participation. The SCS is open source, and creating a team for the DSPL will contribute to the continued maintainence of this substantial code base which is useful for our entire community. Although originally developed for MetraLabs robots, the SCS has recently been ported to other robots, and \teamori{} will contribute an open port of this software to the Toyota HSR. 
 
@@ -96,16 +96,35 @@ The SCS builds upon standard ROS components to provide the following capabilitie
 
 The robots used in the STRANDS Project did not have manipulation capabilities, therefore the SCS does not provide software to support this. To deliver these capabilities we will start from \teamori{} member Lars Kunze's previous experience of knowledge-enabled manipulation~\cite{kunze15aij}. This previous work resulted in a system which could grasp an egg (\url{https://www.youtube.com/watch?v=jLz87H4q3hU}) and make a pancake (\url{https://www.youtube.com/watch?v=YQs5gRei8k4}).
 
+\subsection{Learning new skills}
+The robot will require a number of key skills to successfully perform a wide
+variety of tasks that involve interaction with the environment or other
+agents (Fig. \ref{fig:baxter_water_task}), eg. pushing buttons, tuning handles, grasping and passing objects, etc. %Predicting and manually 
+%designing in advance such a skill-set is only feasible for robots that perform 
+%a narrow set of specific functions. 
+We aim to build in our framework the ability
+to learn and refine new skills as tasks change or as new tasks need to be added
+the task repertoire. Such capability will be based on \teamori{} 
+member Ioannis Havoutis' background in learning, synthesis and control of 
+complex motions \cite{Havoutis16SSRR}. Skill representations
+are learnt from demonstrations---allowing also the use by non-experts---using a probabilistic generative encoding, combining Gaussian 
+Mixture Models (GMMs) and Hidden semi-Markov Models (HSMMs)
+\cite{Havoutis17ICRA}. Motion generation is formulated as an optimal control
+problem that can adapt to changing task parametrizations on-line \cite{Zeestraten17IROS,Zeestraten2017-RAL}.
 
-
-\begin{figure*}[!ht]
+\begin{figure*}[!tbh]
 	\centering
-	\subfigure{\resizebox{\textwidth}{!}{\includegraphics{images/baxter_learning_riemannian.png}}\label{fig:
-all:a}}	
+	\subfigure{\resizebox{\textwidth}{!}{\includegraphics{images/baxter_learning_riemannian.png}}}
 %	\vspace{-10pt}%
-	\caption{Learning a skill from demonstration using Riemannian manifold representation. Covariance/correlation to optimal controller.}
+	\caption{Snapshots of the Baxter robot performing a water pouring task that
+	is learnt from demonstration \cite{Zeestraten2017-RAL}. The probabilistic
+	encoding captures the correlation between the two task frames and results
+	in an optimal controller that reproduces and generalizes the behaviour.}
 	\label{fig:baxter_water_task}
 \end{figure*}
+
+\subsection{Naviagtion(?)}
+...
 
 \paragraph{Capabilities}
 \begin{itemize}
