@@ -36,9 +36,10 @@
 
 \begin{abstract}
 This document outlines the approach \textit{\teamori{}} will take to the 
-RoboCup@Home Domestic Standard Platform League. 
+RoboCup@Home Domestic Standard Platform League (DSPL). 
 We are a new team that aspires to compete in international competitions,
-starting from 2018. Our research interests are centred around long-term
+starting from the 2018 DSPL event in Montreal. Our research
+interests are centred around long-term
 autonomy, mobility, robot learning and knowledge representation. 
 Advances in these directions will enable service robots to interact with humans
 and complete useful everyday tasks in typical household settings. 
@@ -50,37 +51,41 @@ Human Support Robot.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% It must contain the following information:
-% \begin{itemize}
-%     \item Description of the approach planned to be implemented on the robot
-%     \item List of externally available components that are planned to be
-%     implemented (Open source software, web services, etc.)
-%     \item Innovative technology and scientific contribution
-%     \item Focus of research/research interests
-% \end{itemize}
-% The Proposal should go into detail about the technical and scientific approach
-
+%The TDP is an 8-pages (+ annex) long scientific paper, detailing information on the technical and scientific approach of the team's research, while including also the following:
+%\begin{itemize}
+%	\item \checkmark Innovative technology and scientific contribution
+%    \item \checkmark Focus of research/research interests
+%    \item \checkmark Re-usability of the system for other research groups
+%    \item \checkmark Applicability of the robot in the real world
+%	\item \checkmark DSPL and SSPL: When the robot depicted in the TDP or Team Video is different from the league's standard one, the TDP must clearly state how the addressed approach and described software will be adapted to the standard platform robot.
+%\end{itemize}
 
 %Here are some references that can be relevant to our story:
 %\cite{havoutis13ijrr,Winkler2015,havoutis15clawar,Mastalli2015,Havoutis16SSRR,Zeestraten2017-RAL,Havoutis17ICRA,Zeestraten17IROS,Mastalli17ICRA}.
 
 \section{Introduction}
+
 \textit{\teamori{}} is a new team created within the Oxford Robotics Institute
 (ORI) at the University of Oxford. The team consists of undergraduate and
 graduate students; robotics researchers; and faculty members of ORI. We come
 from a strong research institute with seminal work in mobile autonomy and
 machine learning. ORI has a significant track record in \emph{field robotics}
 and real-world trials of autonomous systems. It also has a team of professional
-hardware and software engineers. This experience and support will be leveraged
+hardware and software engineers. This experience and support is leveraged
 to create a RoboCup@Home team capable of delivering across the whole
 competition. 
 
-The Toyota Human Support Robot (HSR) will allow us to focus on developing the
-intelligence required for successfully completing the RoboCup@Home tasks, 
-without the added burden of building and maintaining a custom platform.
 The Domestic Standard Platform League (DSPL) affords a tangible new domain in
 which existing ORI research can be applied, and which provides new challenges
 for the group. 
+We have successfully applied for a Toyota Human Support Robot (HSR) and we are 
+currently (\today) finalising the lease contract with Toyota.
+The HSR allows us to focus on developing the
+intelligence required for successfully completing the RoboCup@Home tasks, 
+without the added burden of building and maintaining a custom platform. 
+Competing in the 2018 DSPL event in Montreal will allow us to demonstrate 
+the capabilities presented in this document and will provide valuable experience
+for our future RoboCup@Home participation.
 
 \section{Team Composition}
 
@@ -102,7 +107,7 @@ intelligent autonomous robots that can work with or for humans, and Dr. Ioannis 
   \vspace{-3ex}
 \end{figure}
 
-The capabilities of our DSPL system will build upon the capabilities developed over the last four years within the EU STRANDS Project\footnote{\url{http://strands-project.eu}}. Key members of this project (Nick Hawes, Lars Kunze, Bruno Lacerda) have recently moved to ORI and will be part of \teamori. The STRANDS Project deployed autonomous mobile robots (MetraLabs SCITOS A5, see Fig.~\ref{fig:mk}) in a range of human-populated environments for long durations~\cite{strands@ram}. These robots provided a range of services to real users, similar to the tasks required in the DSPL. The enabling software used on the robots, the ROS-based \emph{STRANDS Core System} (SCS), therefore gives \teamori{} an ideal basis for DSPL participation. The SCS is open source, and creating a team for the DSPL will contribute to the continued maintenance of this substantial code base which is useful for our entire community. Although originally developed for MetraLabs robots, the SCS has recently been ported to other robots, and \teamori{} will contribute an open port of this software to the Toyota HSR. 
+The capabilities of our DSPL system will build upon the capabilities developed over the last four years within the EU STRANDS Project\footnote{\url{http://strands-project.eu}}. Key members of this project (Nick Hawes, Lars Kunze, Bruno Lacerda) have recently moved to ORI and will be part of \teamori. The STRANDS Project deployed autonomous mobile robots (MetraLabs SCITOS A5, see Fig.~\ref{fig:mk}) in a range of human-populated environments for long durations~\cite{strands@ram}. These robots provided a range of services to real users, similar to the tasks required in the DSPL. The enabling software used on the robots, the ROS-based \emph{STRANDS Core System} (SCS), therefore gives \teamori{} an ideal basis for DSPL development. The SCS is open source, and \teamori{} will contribute to the continued maintenance of this substantial code base which is useful for our entire community. Although originally developed for MetraLabs robots, the SCS has recently been ported to other robots, and \teamori{} will contribute an open port of this software to the Toyota HSR. 
 
 
 
@@ -171,7 +176,7 @@ phase. We aim to schedule recurring trials as our framework is developed, to
 ensure that robot behaviours are successful and to collect data on the 
 success probabilities of tasks and sequences of tasks.
 
-\teamori{} will benefit from the many years of experience of the team of creating integrated robot systems. Team members (including Julie Dequaire) contributed to the first public demonstration of a self-driving car in the UK\footnote{\url{https://www.epsrc.ac.uk/newsevents/news/lutzpathfinder/}}, and all members have contributed to integrated robot systems demonstrated at science museums, public engagement events and trade shows across Europe. All of these systems integrate perception, planning and action in non-trivial ways. Such integration is central to producing a functional and reliable system, but can be incredibly challenging when trying to produce novel capabilities for robots in task environments which you are only able to experience a short time before a deadline. The team's joint experience of bringing diverse robot capabilities together for successful demos will enable the team to start working effectively very quickly, and to deal with common team and system teething  problems smoothly. Our experience on systems which span the capability spectrum from low-level sensing to high-level cognition means that the diverse capabilities described above will be successfully integrated to produce a competitive entry in the DSPL.
+\teamori{} benefits from the many years of experience of the team of creating integrated robot systems. Team members (including Julie Dequaire) contributed to the first public demonstration of a self-driving car in the UK\footnote{\url{https://www.epsrc.ac.uk/newsevents/news/lutzpathfinder/}}, and all members have contributed to integrated robot systems demonstrated at science museums, public engagement events and trade shows across Europe. All of these systems integrate perception, planning and action in non-trivial ways. Such integration is central to producing a functional and reliable system, but can be incredibly challenging when trying to produce novel capabilities for robots in task environments which you are only able to experience a short time before a deadline. The team's joint experience of bringing diverse robot capabilities together for successful demos will enable the team to start working effectively very quickly, and to deal with common team and system teething problems smoothly. Our experience on systems which span the capability spectrum from low-level sensing to high-level cognition means that the diverse capabilities described above will be successfully integrated to produce a competitive entry in the 2018 DSPL Montreal event.
 
 
 \section{Applicability and Re-Usability of the System}
@@ -186,8 +191,11 @@ The continued maintenance and development of the SCS will provide a well-tested 
 \section{Conclusion}
 \textit{\teamori{}} is a new DSPL team that builds on the strong research 
 background of its team members and on extensive real-world robot operating
-experience, in a range of service tasks, similar to the DSPL. Being selected
-for the Toyota HSR will allow us to demonstrate our DSPL system at the qualification round in February 2018 and compete in RoboCup 2018 in Montreal.
+experience, in a range of service tasks, similar to the DSPL. 
+
+Competing in the 2018 DSPL event in Montreal will allow us to demonstrate 
+the presented capabilities on the HSR and will provide valuable experience
+for our newly-born team.
 
 \bibliographystyle{unsrt}
 \bibliography{bibliography}
