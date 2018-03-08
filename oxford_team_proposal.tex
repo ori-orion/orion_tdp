@@ -34,7 +34,7 @@
 
 \authorrunning{Nick Hawes et al.}
 
-\title{\teamori\\ 2018 DSPL Team Description}
+\title{\teamori\\ 2018 Partner Robot Challenge (Real Space)}
 
 \author{Nick Hawes \and Ioannis Havoutis \and Lars Kunze \and Bruno Lacerda \and Paul Amayo \and Julie Dequaire \and Rowan Border \and Stephen Kyberd}
 \institute{Oxford Robotics Institute, University of Oxford, UK, \\
@@ -47,9 +47,9 @@
 
 \begin{abstract}
 This document outlines the approach \textit{\teamori{}} will take to the 
-RoboCup@Home Domestic Standard Platform League (DSPL). 
+Partner Robot Challenge (Real Space) at the World Robot Summit 2018.
 We are a new team that aspires to compete in international competitions,
-starting from the 2018 DSPL event in Montreal. Our research
+starting from the 2018 World Robot Challenge event in Tokyo. Our research
 interests are centred around long-term
 autonomy, mobility, robot learning and knowledge representation. 
 Advances in these directions will enable service robots to interact with humans
@@ -83,20 +83,20 @@ from a strong research institute with seminal work in mobile autonomy and
 machine learning. ORI has a significant track record in \emph{field robotics}
 and real-world trials of autonomous systems. It also has a team of professional
 hardware and software engineers. This experience and support is leveraged
-to create a RoboCup@Home team capable of delivering across the whole
+to create a team capable of delivering across the whole
 competition. 
 
-The Domestic Standard Platform League (DSPL) affords a tangible new domain in
+The Partner Robot Challenge (Real Space) affords a tangible new domain in
 which existing ORI research can be applied, and which provides new challenges
 for the group. 
 We have successfully applied for a Toyota Human Support Robot (HSR) and we are 
 currently (\today) finalising the lease contract with Toyota.
 The HSR allows us to focus on developing the
-intelligence required for successfully completing the RoboCup@Home tasks, 
+intelligence required for successfully completing the Partner Robot Challenge tasks, 
 without the added burden of building and maintaining a custom platform. 
-Competing in the 2018 DSPL event in Montreal will allow us to demonstrate 
+Competing in the 2018 Partner Robot Challenge (Real Space) event in Tokyo will allow us to demonstrate 
 the capabilities presented in this document and will provide valuable experience
-for our future RoboCup@Home participation.
+for our future participation at international events.
 
 \section{Team Composition}
 
@@ -118,15 +118,14 @@ intelligent autonomous robots that can work with or for humans, and Dr. Ioannis 
   \vspace{-3ex}
 \end{figure}
 
-The capabilities of our DSPL system will build upon the capabilities developed over the last four years within the EU STRANDS Project\footnote{\url{http://strands-project.eu}}. Key members of this project (Nick Hawes, Lars Kunze, Bruno Lacerda) have recently moved to ORI and will be part of \teamori. The STRANDS Project deployed autonomous mobile robots (MetraLabs SCITOS A5, see Fig.~\ref{fig:mk}) in a range of human-populated environments for long durations~\cite{strands@ram}. These robots provided a range of services to real users, similar to the tasks required in the DSPL. The enabling software used on the robots, the ROS-based \emph{STRANDS Core System} (SCS), therefore gives \teamori{} an ideal basis for DSPL development. The SCS is open source, and \teamori{} will contribute to the continued maintenance of this substantial code base which is useful for our entire community. Although originally developed for MetraLabs robots, the SCS has recently been ported to other robots, and \teamori{} will contribute an open port of this software to the Toyota HSR. 
+The capabilities of our robot system will build upon the capabilities developed over the last four years within the EU STRANDS Project\footnote{\url{http://strands-project.eu}}. Key members of this project (Nick Hawes, Lars Kunze, Bruno Lacerda) have recently moved to ORI and will be part of \teamori. The STRANDS Project deployed autonomous mobile robots (MetraLabs SCITOS A5, see Fig.~\ref{fig:mk}) in a range of human-populated environments for long durations~\cite{strands@ram}. These robots provided a range of services to real users, similar to the tasks required in the competition. The enabling software used on the robots, the ROS-based \emph{STRANDS Core System} (SCS), therefore gives \teamori{} an ideal basis for development. The SCS is open source, and \teamori{} will contribute to the continued maintenance of this substantial code base which is useful for our entire community. Although originally developed for MetraLabs robots, the SCS has recently been ported to other robots, and \teamori{} will contribute an open port of this software to the Toyota HSR. 
 
 
 
-The SCS builds upon standard ROS components to provide the following capabilities, all of which have been tested in long-term deployments in real user environments: topological, human-aware robust navigation; object detection, identification and classification; autonomous online object learning; human detection, skeleton tracking, and activity analysis; basic human-robot interaction via speech and screen; and goal management and task planning. Our capabilities for person tracking~\cite{dondrup2015tracker} can be seen online\footnote{\url{https://youtu.be/zdnvhQU1YNo}} and formed the basis of many interactive behaviours, including social navigation, and activity learning and recognition~\cite{duckworth_aamas2016}, which are relevant to DSPL. 
+The SCS builds upon standard ROS components to provide the following capabilities, all of which have been tested in long-term deployments in real user environments: topological, human-aware robust navigation; object detection, identification and classification; autonomous online object learning; human detection, skeleton tracking, and activity analysis; basic human-robot interaction via speech and screen; and goal management and task planning. Our capabilities for person tracking~\cite{dondrup2015tracker} can be seen online\footnote{\url{https://youtu.be/zdnvhQU1YNo}} and formed the basis of many interactive behaviours, including social navigation, and activity learning and recognition~\cite{duckworth_aamas2016}, which are relevant to the Partner Robot Challenge. 
 
 
 \subsection{Manipulation -- Learning new skills}
-
 
 
 In the context of manipulation, the robot will require a number of key skills 
@@ -166,7 +165,7 @@ To enable robust navigation in all settings we take a hierarchical approach to n
 
 \subsection{Semantic Vision}
 
-Learning and recognising objects during operation is a key task for a mobile service robot in human environments. \teamori{} will exploit the work done in the STRANDS Project in terms of autonomous object learning plus the recognition and modelling of previously unseen objects. The work is based on the \emph{meta-room} approach which builds dense RGB-D reconstructions of regions around locations in the robot's topological map. Objects are found through inspecting or differencing meta-rooms. Surfaces and possible objects found in meta-rooms become either targets for more detailed view planning~\cite{kunze14indirect} (see Figure~\ref{fig:mk}) leading to recognition, or for autonomous object learning~\cite{Faeulhammer:2016}. Our recognition pipeline mixes top-down semantic reasoning with bottom-up appearance-based processing for scene understanding \cite{kunze14topdown}, jointly estimating object locations and categories based on qualitative spatial models\cite{kunze14bootstrapping}. The object learning process can build detailed 3D models entire without supervision~\cite{Faeulhammer:2016}. Previously unknown  objects are processed with a mix of deep vision and semantic web technologies to provide the robot with an initial estimate of their identity~\cite{aloof@icra17}.
+Learning and recognising objects during operation is a key task for a mobile service robot in human environments. \teamori{} will exploit the work done in the STRANDS Project in terms of autonomous object learning plus the recognition and modelling of previously unseen objects. The work is based on the \emph{meta-room} approach which builds dense RGB-D reconstructions of regions around locations in the robot's topological map. Objects are found through inspecting or differencing meta-rooms. Surfaces and possible objects found in meta-rooms become either targets for more detailed view planning~\cite{kunze14indirect} (see Figure~\ref{fig:mk}) leading to recognition, or for autonomous object learning~\cite{Faeulhammer:2016}. Our recognition pipeline mixes top-down semantic reasoning with bottom-up appearance-based processing for scene understanding \cite{kunze14topdown}, jointly estimating object locations and categories based on qualitative spatial models~\cite{kunze14bootstrapping}. The object learning process can build detailed 3D models entire without supervision~\cite{Faeulhammer:2016}. Previously unknown  objects are processed with a mix of deep vision and semantic web technologies to provide the robot with an initial estimate of their identity~\cite{aloof@icra17}.
 
 
 
@@ -187,7 +186,7 @@ phase. We aim to schedule recurring trials as our framework is developed, to
 ensure that robot behaviours are successful and to collect data on the 
 success probabilities of tasks and sequences of tasks.
 
-\teamori{} benefits from the many years of experience of the team of creating integrated robot systems. Team members (including Julie Dequaire) contributed to the first public demonstration of a self-driving car in the UK\footnote{\url{https://www.epsrc.ac.uk/newsevents/news/lutzpathfinder/}}, and all members have contributed to integrated robot systems demonstrated at science museums, public engagement events and trade shows across Europe. All of these systems integrate perception, planning and action in non-trivial ways. Such integration is central to producing a functional and reliable system, but can be incredibly challenging when trying to produce novel capabilities for robots in task environments which you are only able to experience a short time before a deadline. The team's joint experience of bringing diverse robot capabilities together for successful demos will enable the team to start working effectively very quickly, and to deal with common team and system teething problems smoothly. Our experience on systems which span the capability spectrum from low-level sensing to high-level cognition means that the diverse capabilities described above will be successfully integrated to produce a competitive entry in the 2018 DSPL Montreal event.
+\teamori{} benefits from the many years of experience of the team of creating integrated robot systems. Team members (including Julie Dequaire) contributed to the first public demonstration of a self-driving car in the UK\footnote{\url{https://www.epsrc.ac.uk/newsevents/news/lutzpathfinder/}}, and all members have contributed to integrated robot systems demonstrated at science museums, public engagement events and trade shows across Europe. All of these systems integrate perception, planning and action in non-trivial ways. Such integration is central to producing a functional and reliable system, but can be incredibly challenging when trying to produce novel capabilities for robots in task environments which you are only able to experience a short time before a deadline. The team's joint experience of bringing diverse robot capabilities together for successful demos will enable the team to start working effectively very quickly, and to deal with common team and system teething problems smoothly. Our experience on systems which span the capability spectrum from low-level sensing to high-level cognition means that the diverse capabilities described above will be successfully integrated to produce a competitive entry in the 2018 Partner Robot Challenge event in Tokyo.
 
 
 \section{Applicability and Re-Usability of the System}
@@ -200,11 +199,11 @@ success probabilities of tasks and sequences of tasks.
 The continued maintenance and development of the SCS will provide a well-tested software framework for mobile service robots. Continuing the practice started by the STRANDS Project, we will make extensions to the SCS available as open source software. This will enable our core framework to be reusable by other groups. The validity of this approach has already been demonstrated by the reuse of the SCS at labs including the Intelligent Robots and Systems group at the Institute for Systems and Robotics, Lisbon, and at Honda Research Institute Europe. The aforementioned use of the majority of our technology within systems which have already been successfully demonstrated in real challenging service robot environments shows that our approach is applicable in the real world.
 
 \section{Conclusion}
-\textit{\teamori{}} is a new DSPL team that builds on the strong research 
+\textit{\teamori{}} is a new team that builds on the strong research 
 background of its team members and on extensive real-world robot operating
-experience, in a range of service tasks, similar to the DSPL. 
+experience, in a range of service tasks, similar to the Partner Robot Challenge. 
 
-Competing in the 2018 DSPL event in Montreal will allow us to demonstrate 
+Competing in the 2018 Partner Robot Challenge (Real Space) event in Tokyo will allow us to demonstrate 
 the presented capabilities on the HSR and will provide valuable experience
 for our newly-born team.
 
