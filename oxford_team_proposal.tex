@@ -128,16 +128,12 @@ The capabilities of our robot system will build upon the capabilities developed 
 
 The SCS builds upon standard ROS components to provide the following capabilities, all of which have been tested in long-term deployments in real user environments: topological, human-aware robust navigation; object detection, identification and classification; autonomous online object learning; human detection, skeleton tracking, and activity analysis; basic human-robot interaction via speech and screen; and goal management and task planning. Our capabilities for person tracking~\cite{dondrup2015tracker} can be seen online\footnote{\url{https://youtu.be/zdnvhQU1YNo}} and formed the basis of many interactive behaviours, including social navigation, and activity learning and recognition~\cite{duckworth_aamas2016}, which are relevant to the Partner Robot Challenge. 
 
-\subsection{Human-robot Interaction}
-\dots
+\subsection{Collaboration between humans and robots}
 
-\begin{itemize}
-  \item \cite{strands@ram} guiding people, planning for interaction, speech generation  
-  \item \cite{tufts17reg} Spatial referring expression generation 
-  \item manipulation, navigation, semantic vision/scene understanding are important for competent HRI and will be discussed below
-\end{itemize}
+Collaboration between humans and robots, or human-robot interaction (HRI), is of major importance in many service robotics tasks. HRI is one of the truly challenging areas in autonomous robot systems research. In context of the STRANDS project~\cite{strands@ram}, our robots interacted with people in real-world environments in various ways: they guided visitors to places within a building, led a walking group of elderly people in a weekly therapy session, and provided information to people whereby they planned when and where to provide it most effectively. 
+While our robots provided valuable assistance to people in several tasks, they also relied on human collaboration in a range of other situations. For example, as our  robots were not able to open doors they had to ask a person for help whenever they wanted to go to a different part of the environment. Similarly, whenever they got stuck and could not recover themselves (for various reasons) they asked people for help to get them out of the situation. In both situations, the HRI was realized via a combination of speech output and interaction on a touch screen. In the area of scene understanding, we investigated how robot can refer to objects in the environment using Natural Language~\cite{tufts17reg} to provide spatial descriptions to end-users.  
 
-
+A fully competent HRI also involves also manipulation (e.g. hand-over), human-aware navigation, and semantic vision/scene understanding. These areas are discussed below.
 
 \subsection{Manipulation -- Learning new skills}
 
