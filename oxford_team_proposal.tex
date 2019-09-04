@@ -34,12 +34,12 @@
 
 \authorrunning{Ioannis Havoutis et al.}
 
-\title{\teamori\\ 2019 DSPL Team Description}
+\title{\teamori\\ 2020 Team Description - Partner (Real Space) League}
 
 \author{Ioannis Havoutis \and Nick Hawes \and Lars Kunze \and Bruno Lacerda 
-\and Chia-Man Hung \and Mark Finean \and Denis Koksal-Rivet \and Stephen Kyberd}
+\and Mark Finean \and Charlie Street \and Marc Rigter \and Chia-Man Hung}
 \institute{Oxford Robotics Institute, University of Oxford, UK, \\
-\texttt{ioannis@robots.ox.ac.uk} \\
+\texttt{mfinean@robots.ox.ac.uk} \\
 \url{http://ori.ox.ac.uk/robocup/}}
 
 \maketitle
@@ -48,12 +48,11 @@
 
 \begin{abstract}
 This document outlines the approach \textit{\teamori} will take to the 
-RoboCup@Home Domestic Standard Platform League (DSPL). 
-We are a new team with a strong research background and we aspire to compete 
-in this year's DSPL. Our first experience competing with the Toyota Human 
-Support Robot was at
-the World Robot Summit (WRS) last October, were we competed in the Partner 
-Robot Challenge. 
+World Robot Summit (WRS) 2020 Partner (Real Space) competition. 
+We are a relatively new team with a strong research background and we aspire to compete 
+in this year's WRS. Our first experience competing with the Toyota Human 
+Support Robot was at the WRS 2018, where we competed in the Partner 
+Robot Challenge. We have since competed at RoboCup 2019 in the DSPL @Home league.
 Our research interests are centred around long-term
 autonomy, mobility, robot learning and knowledge representation. 
 Advances in these directions will enable service robots to interact with humans
@@ -80,29 +79,28 @@ HSR.
 
 \section{Introduction}
 
-\textit{\teamori{}} is a new team created within the Oxford Robotics Institute
+\textit{\teamori{}} is a relatively new team created within the Oxford Robotics Institute
 (ORI) at the University of Oxford. The team consists of undergraduate and
 graduate students; robotics researchers; and faculty members of ORI. We come
 from a strong research institute with seminal work in mobile autonomy and
 machine learning. ORI has a significant track record in \emph{field robotics}
 and real-world trials of autonomous systems. It also has a team of professional
 hardware and software engineers. This experience and support is leveraged
-to create a RoboCup@Home team capable of delivering across the whole
+to create a robotics competition team capable of delivering across the whole
 competition. 
 
-The Domestic Standard Platform League (DSPL) affords a tangible new domain in
+The WRS Partner (Real Space) league affords a tangible new domain in
 which existing ORI research can be applied, and which provides new challenges
 for the group.
-We successfully applied for a Toyota Human Support Robot (HSR) last year (2018)
-and we have received the robot in late July. Despite the short amount of time we
-had with the HSR, we succeed in competing in the Partner Robot Challenge of 
-this year's World Robot Summit (WRS) in October (see Figure~\ref{fig:wrs}). 
-The HSR allows us to focus on developing the
-intelligence required for successfully completing the RoboCup@Home tasks, 
+We successfully applied for a Toyota Human Support Robot (HSR) in 2018
+and received the robot in late July. Despite the short amount of time we
+had with the HSR, we succeeded in competing in the Partner Robot Challenge of WRS in the October (see Figure~\ref{fig:wrs}). We since competed in the 2019 RoboCup@Home competition, placing $6^{th}$ out of 10 on our first attempt at the competition. 
+The HSR robot allows us to focus on developing the
+intelligence required for successfully completing the WRS tasks, 
 without the added burden of building and maintaining a custom platform. 
-Competing in the 2019 DSPL event in Sydney will allow us to demonstrate 
+Competing in the 2020 WRS event will allow us to demonstrate 
 the capabilities presented in this document and will provide valuable experience
-for our future RoboCup@Home participation.
+for our future participations.
 
 
 \begin{figure}[tb]
@@ -119,7 +117,7 @@ for our future RoboCup@Home participation.
 \section{Team Composition}
 
 The team is led by Prof. Nick Hawes, who has extensive background in
-intelligent autonomous robots that can work with or for humans, and Dr. Ioannis Havoutis, an expert in combining motion planning with machine learning. The core of the team for 2019 will be ORI post-doctoral researchers (Lars Kunze, Bruno Lacerda) and PhD students (Chia-Man Hung, Mark Finean, Rowan Border), with more junior members (Denis Koksal-Rivet, undergraduates) being brought in as the team develops. 
+intelligent autonomous robots that can work with or for humans, and Dr. Ioannis Havoutis, an expert in combining motion planning with machine learning. The core of the team for 2020 will be ORI post-doctoral researchers (Lars Kunze, Bruno Lacerda), PhD students (Chia-Man Hung, Mark Finean, Charlie Street, Marc Rigter, Tim Tang, Michael Painter, Yizhe Wu, Shu Ishida), and more udergraduates members (Mia Mijovic, Matthew Budd) being brought in as the team develops. 
 
 
 
@@ -196,7 +194,7 @@ Learning and recognising objects during operation is a key task for a mobile ser
 
 A substantial effort will be needed to develop behaviours that are robust to
 changes in the environment and to noise typical of real-world scenarios. In this
-respect we will exploit our experience from the STANDS project 
+respect we will exploit our experience from the STRANDS project 
 \cite{strands@ram} and build upon the tested SCS. Some of this software has already been integrated to our stack for the needs of the Partner Robot Challenge of WRS.
 Given the similarity of the HSR to the SCITOS platform, and other platforms the team are familiar with, %(e.g. through Lars Kunze's work on the PR2 for object search in a multi-story building~\cite{kunze12objsearch}\footnote{\url{https://www.youtube.com/watch?v=RIYRQC2iBp0}}), 
 we predict that porting the
@@ -210,11 +208,11 @@ ensure that robot behaviours are successful and to collect data on the
 success probabilities of tasks and sequences of tasks.
 
 \teamori{} benefits from the many years of experience of the team of creating integrated robot systems. Team members contributed to the first public demonstration of a self-driving car in the UK\footnote{\url{https://www.epsrc.ac.uk/newsevents/news/lutzpathfinder/}}, and all members have contributed to integrated robot systems demonstrated at science museums, public engagement events and trade shows across Europe. All of these systems integrate perception, planning and action in non-trivial ways. Such integration is central to producing a functional and reliable system, but can be incredibly challenging when trying to produce novel capabilities for robots in task environments which you are only able to experience a short time before a deadline. We had our
-first competition just last October in the Partner Robot Challenge of WRS. 
+first competition in October 2018 in the Partner Robot Challenge of WRS. 
 Most of the team members were part of this experience and now have demonstrated
 our team's ability to develop, integrate and test solutions on a very short
-time schedule; we achieved in competing given only 3 weeks of preparation.
-The team's joint experience of bringing diverse robot capabilities together for successful demos will enable the team to start working effectively very quickly, and to deal with common team and system teething problems smoothly. Our experience on systems which span the capability spectrum from low-level sensing to high-level cognition means that the diverse capabilities described above will be successfully integrated to produce a competitive entry in the 2019 DSPL Sydney.
+time schedule; we achieved in competing given only 3 weeks of preparation. The team has since expanded to bring in more undergraduate and post-graduate students, enabling us to improve our stack to place $6^{th}$ out of 10 in the RoboCup@Home 2019 competition.
+The team's joint experience of bringing diverse robot capabilities together for successful demos will enable the team to start working effectively very quickly, and to deal with common team and system teething problems smoothly. Our experience on systems which span the capability spectrum from low-level sensing to high-level cognition means that the diverse capabilities described above will be successfully integrated to produce a competitive entry in the 2020 WRS competition.
 
 
 \section{Applicability and Re-Usability of the System}
@@ -234,18 +232,18 @@ The continued maintenance and development of the SCS will provide a well-tested 
 
 \item \textbf{Object detection} - For object detection in 2D we use a trained deep neural network, \textit{YOLO}. We decided to start with YOLO because of the simplicity of the framework and fast detection speeds with deep models reported in the literature. Image coordinates of detected objects are transformed into 3D  and into object markers, using simple processing and ROS' \textit{tf}.  
 
-\item \textbf{Manipulation and grasping} - In our current software stack, grasping is realised via the ROS motion planning framework \textit{MoveIt}\footnote{\url{https://moveit.ros.org}}. A target frame is provided by our object detection system, while MoveIt is used for motion planning and grasping. 
+\item \textbf{Manipulation and grasping} - In our current software stack, grasping is realised via the ROS motion planning framework \textit{MoveIt}\footnote{\url{https://moveit.ros.org}}. A target frame is provided by our object detection system to give the 3D pose location of the object to grasp. This location is then used to indicate which object point cloud we wish to segment and feed to the grasp synthesis module. The grasp synthesis module ranks grasp poses and returns the best candidate poses for the end-effector to approach from for MoveIt to perform the motion planning and grasping. 
 
 \end{itemize}
 
 \section{Conclusion}
 \textit{\teamori{}} is a new DSPL team that builds on the strong research 
 background of its team members and on extensive real-world robot operating
-experience, in a range of service tasks, similar to the DSPL. 
+experience, in a range of service tasks, similar to the WRS Partner (Real Space) tasks. 
 
-Competing in the 2019 DSPL event in Sydney will allow us to demonstrate 
+Competing in the 2020 WRS event in Japan will allow us to demonstrate 
 the presented capabilities on the HSR and will provide valuable experience
-for our newly-born team.
+for our up-and-coming team.
 
 \bibliographystyle{unsrt}
 \bibliography{bibliography}
