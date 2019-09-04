@@ -50,8 +50,8 @@
 This document outlines the approach \textit{\teamori} will take to the 
 World Robot Summit (WRS) 2020 Partner (Real Space) competition. 
 We are a relatively new team with a strong research background and we aspire to compete 
-in this year's WRS. Our first experience competing with the Toyota Human 
-Support Robot was at the WRS 2018, where we competed in the Partner 
+in this year's WRS competition. Our first experience competing with the Toyota Human 
+Support Robot was at WRS 2018, where we competed in the Partner 
 Robot Challenge. We have since competed at RoboCup 2019 in the DSPL @Home league.
 Our research interests are centred around long-term
 autonomy, mobility, robot learning and knowledge representation. 
@@ -61,7 +61,6 @@ We aim to demonstrate robust and intelligent autonomous behaviour, that uses
 experience to learn and refine a growing set of robot skills, on the Toyota
 HSR.
 \end{abstract}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -89,7 +88,7 @@ hardware and software engineers. This experience and support is leveraged
 to create a robotics competition team capable of delivering across the whole
 competition. 
 
-The WRS Partner (Real Space) league affords a tangible new domain in
+The WRS Partner (Real Space) league affords a tangible domain in
 which existing ORI research can be applied, and which provides new challenges
 for the group.
 We successfully applied for a Toyota Human Support Robot (HSR) in 2018
@@ -131,16 +130,29 @@ intelligent autonomous robots that can work with or for humans, and Dr. Ioannis 
 How your team works under the following concepts:
 \subsection{Technical Challenges for 4S }
  Regarding Service Robots, describe what you understand for each aspect in the 4S philosophy (Speed, Smooth/Smart, Stable and Safe), the state-of-the-art, technical challenges, and your own approaches to the problem:
+
 \subsubsection{Speed}
+There is a careful balance in determining the speed at which a robot should operate. For accomplishing tasks around the home, we typically want them performed as fast as possible, while also minimising the risk of breakages and harm to either humans or the robot. The address this, the speed of base movement is adjusted based on the distance to obstacles. In clear areas of space, the robot is allowed to move much faster. Similarly, when then robot arm is operating in a more confined space, the speed of movements is restricted.
+
 \subsubsection{Smooth/Smart}
+For key phrases, we implement hot-word detection to firstly reduce execution times, but also to give communication with the robot a more natural and fluid feel. 
+
+We believe that the impression of a smooth and intelligent robot can also be derived from having a robust robot that uses feedback to verify its actions. For example, in the RoboCup@Home 2019 event, we implemented force-torque calculations on the wrist to inform the robot whether `hard-to-manipulate' objects such as a carrier bag had been released from the gripper. Similarly, when trying to manipulate a small object the HSR will first try to segment point clouds to generate an optimal grasp pose. However in the case of failure, it will resort to a visual feedback system in the hand camera to attempt the task.
+
 \subsubsection{Stable}
+
+
 \subsubsection{Safe}
+Safety is the number one priority for us in deploying real robot systems. We firstly must avoid conducting any dangerous behaviour towards humans and the environment, and secondly to the robot system itself. With a robot such as the Toyota HSR, the primary areas of concern for safety are during the navigation and manipulation stages of a task. 
+
+We implement a safety radius (obstacle inflation) in order to provide forbidden zones for the robot to prevent damage to surroundings and itself. In the STRANDS package which we hope to fully incorporate, we have human-aware navigation whereby the robot will slow down in proximity of humans. 
 
 \subsection{System Design for “Keep moving”, “Move carefully” and “Be clever”}
- Describe your idea of a system framework that allows a robot to “Keep moving”, “Move carefully”, and “Be clever”.
-  “Keep moving”: Keep moving with accurate recognition of objects, people and environment and reasonable motion planning.
-  “Move carefully”: Small object avoidance on the floor.
- “Be clever”: Appropriate and quick error detection and recovery.
+To ``Keep Moving'', the STRANDS’ person detection continues to operate and enable robot locomotion, albeit at lesser speeds when in the presence of humans.
+
+To “Move carefully”, the HSR is equipped as standard with a 2D laser scanner enabling the robot to maintain safe distances from it's surroundings such as walls. In the first WRS competition we attended, we noticed that our robot would sometimes reverse without checking if their are objects behind it first. We have since rectified this in order to maxmimise safety. The STRANDS project 3D obstacle avoidance used not only a planar 2D laser scanner for obstacle detections but also a downward-looking chest RGBD cam. We aim to incorporate this technology on the HSR platform by utilising the HSR's RGBD head camera while moving. 
+
+“Be Clever” Our monitored navigation package detects navigation errors and enables the robot to recover automatically, for example by backtracking when it becomes uncertain or stuck. 
 
 \section{Software development policy}
 \subsection{Tools}
@@ -254,29 +266,11 @@ our team's ability to develop, integrate and test solutions on a very short
 time schedule; we achieved in competing given only 3 weeks of preparation. The team has since expanded to bring in more undergraduate and post-graduate students, enabling us to improve our stack to place $6^{th}$ out of 10 in the RoboCup@Home 2019 competition.
 The team's joint experience of bringing diverse robot capabilities together for successful demos will enable the team to start working effectively very quickly, and to deal with common team and system teething problems smoothly. Our experience on systems which span the capability spectrum from low-level sensing to high-level cognition means that the diverse capabilities described above will be successfully integrated to produce a competitive entry in the 2020 WRS competition.
 
-
-%\subsection{Applicability and Re-Usability of the System}
-%%     \item Re-usability of the system for other research groups
-%%     \item Applicability of the approach in the real world
-
-%The continued maintenance and development of the SCS will provide a well-tested software framework for mobile service robots. Continuing the practice started by the STRANDS Project, we will make extensions to the SCS available as open source software. This will enable our core framework to be reusable by other groups. The validity of this approach has already been demonstrated by the reuse of the SCS at labs including the Intelligent Robots and Systems group at the Institute for Systems and Robotics, Lisbon, and at Honda Research Institute Europe. The aforementioned use of the majority of our technology within systems which have already been successfully demonstrated in real challenging service robot environments shows that our approach is applicable in the real world.
-
-%\subsection{Current software stack}
-%\begin{itemize}
-%\item \textbf{Topological navigation} - The topological navigation system from the STRANDS project was integrated into the HSR as the main navigation system. The system allows for the placement of predefined nodes in our map and for the creation of edges between any of the nodes. The system also allows for the specification of actions on each edges and nodes, allowing the user to define any number of actions to take upon reaching a node, or whilst navigating to a node; this allows us to use the move\_base configurations specified by Toyota, or to define our own navigation with optimized parameters. 
-
-%\item \textbf{Human-Robot Interaction via Speech} - For interacting with the robot using Natural Language (via speech commands) we have integrated Julius, an open-source large vocabulary continuous speech recognition engine\footnote{\url{https://github.com/julius-speech/julius}}. To this end, we have defined a simple grammar that allows an operator to communicate with the robot in predefined dialogues. This allows an operator to issue commands (``tidy up, bring me \emph{something}'', ``move to \emph{location}'') and/or confirm requests made by the robots (\emph{``Please open the door and confirm when you are done''}).  
-
-%\item \textbf{Object detection} - For object detection in 2D we use a trained deep neural network, \textit{YOLO}. We decided to start with YOLO because of the simplicity of the framework and fast detection speeds with deep models reported in the literature. Image coordinates of detected objects are transformed into 3D  and into object markers, using simple processing and ROS' \textit{tf}.  
-
-%\item \textbf{Manipulation and grasping} - In our current software stack, grasping is realised via the ROS motion planning framework \textit{MoveIt}\footnote{\url{https://moveit.ros.org}}. A target frame is provided by our object detection system to give the 3D pose location of the object to grasp. This location is then used to indicate which object point cloud we wish to segment and feed to the grasp synthesis module. The grasp synthesis module ranks grasp poses and returns the best candidate poses for the end-effector to approach from for MoveIt to perform the motion planning and grasping. 
-
-%\end{itemize}
-
 \section{Relevant publications }
 Related publications in the past 5 years, preferably available to download.
 
 \section{Energy efficiency and conservation efforts}
+In the STRANDS project, we implemented smart battery management.This was aimed towards an efficient handling of tasks and maximising long-term autonomy.
 
 \section{Link to Team Video, Team Website}
 Team Website: \url{https://ori.ox.ac.uk/projects/robocup/} \\
