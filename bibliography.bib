@@ -271,3 +271,40 @@
 	Volume = {2},
 	Year = {2016},
 	Bdsk-Url-1 = {http://dx.doi.org/10.1109/LRA.2016.2522086}}
+	
+@article{GPD1,
+abstract = {Recently, a number of grasp detection methods have been proposed that can be used to localize robotic grasp configurations directly from sensor data without estimating object pose. The underlying idea is to treat grasp perception analogously to object detection in computer vision. These methods take as input a noisy and partially occluded RGBD image or point cloud and produce as output pose estimates of viable grasps, without assuming a known CAD model of the object. Although these methods generalize grasp knowledge to new objects well, they have not yet been demonstrated to be reliable enough for wide use. Many grasp detection methods achieve grasp success rates (grasp successes as a fraction of the total number of grasp attempts) between 75{\%} and 95{\%} for novel objects presented in isolation or in light clutter. Not only are these success rates too low for practical grasping applications, but the light clutter scenarios that are evaluated often do not reflect the realities of real world grasping. This paper proposes a number of innovations that together result in a significant improvement in grasp detection performance. The specific improvement in performance due to each of our contributions is quantitatively measured either in simulation or on robotic hardware. Ultimately, we report a series of robotic experiments that average a 93{\%} end-to-end grasp success rate for novel objects presented in dense clutter.},
+archivePrefix = {arXiv},
+arxivId = {1706.09911v1},
+author = {ten Pas, Andreas and Gualtieri, Marcus and Saenko, Kate and Platt, Robert},
+doi = {10.1177/0278364917735594},
+eprint = {1706.09911v1},
+file = {:Users/mfinean/Library/Application Support/Mendeley Desktop/Downloaded/Pas - Unknown - Grasp Pose Detection in Point Clouds Journal Title XX(X)1-17 c.pdf:pdf},
+issn = {0278-3649},
+journal = {The International Journal of Robotics Research},
+month = {dec},
+number = {13-14},
+pages = {1455--1473},
+title = {{Grasp Pose Detection in Point Clouds}},
+url = {www.sagepub.com/ http://journals.sagepub.com/doi/10.1177/0278364917735594},
+volume = {36},
+year = {2017}
+}
+
+@inproceedings{GPD2,
+abstract = {This paper considers the problem of grasp pose detection in point clouds. We follow a general algorithmic structure that first generates a large set of 6-DOF grasp candidates and then classifies each of them as a good or a bad grasp. Our focus in this paper is on improving the second step by using depth sensor scans from large online datasets to train a convolutional neural network. We propose two new representations of grasp candidates, and we quantify the effect of using prior knowledge of two forms: instance or category knowledge of the object to be grasped, and pretraining the network on simulated depth data obtained from idealized CAD models. Our analysis shows that a more informative grasp candidate representation as well as pretraining and prior knowledge significantly improve grasp detection. We evaluate our approach on a Baxter Research Robot and demonstrate an average grasp success rate of 93{\%} in dense clutter. This is a 20{\%} improvement compared to our prior work.},
+archivePrefix = {arXiv},
+arxivId = {1603.01564v2},
+author = {Gualtieri, Marcus and ten Pas, Andreas and Saenko, Kate and Platt, Robert},
+booktitle = {2016 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+doi = {10.1109/IROS.2016.7759114},
+eprint = {1603.01564v2},
+file = {:Users/mfinean/Library/Application Support/Mendeley Desktop/Downloaded/Gualtieri et al. - Unknown - High precision grasp pose detection in dense clutter.pdf:pdf},
+isbn = {978-1-5090-3762-9},
+month = {oct},
+pages = {598--605},
+publisher = {IEEE},
+title = {{High precision grasp pose detection in dense clutter}},
+url = {https://github.com/atenpas/gpd http://ieeexplore.ieee.org/document/7759114/},
+year = {2016}
+}
