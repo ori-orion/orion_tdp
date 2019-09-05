@@ -125,12 +125,20 @@ There is a careful balance in determining the speed at which a robot should oper
 
 \subsubsection{Smooth/Smart}
 The impression of a smooth and intelligent robot can also be derived from having a robust robot that uses feedback to verify its actions. In RoboCup@Home 2019, we used force-torque calculations on the wrist to inform the robot whether objects had been released from the gripper. When trying to manipulate a small object our HSR will first try to segment point clouds to generate an optimal grasp pose. In the case of failure, it will resort to a visual feedback system in the hand camera to attempt the task. For key phrases, we implement hotword detection to reduce execution times and to give communication with the robot a more natural and fluid feel. 
+In addition, we provide smart, robust behaviours at the task level using state machines. 
+By using state machines as an execution framework, we allow the robot to continue acting in the environment even after something unexpected has happened.
+This provides much smarter behaviours than a hard coded approach.
 
 \subsubsection{Stable}
-
+To develop stable robotics systems, we care about robots with robust behaviours that can react to failure at the point of execution. 
+We do this by explicitly modelling the uncertainty in the environment at planning time.
+In doing this, rather than computing fixed plans over our robots behaviour, we can instead compute \emph{policies}.
+By using policies, if something unexpected occurs at execution-time, our robots are able to react to this dynamically.
+For example, with our navigation framework, if a door we expect to be open is actually closed, we can take an alternate route, or ask for help \cite{lacerda2019probabilistic}.
 
 \subsubsection{Safe}
-Safety is our priority in deploying real robot systems. We firstly must avoid conducting any dangerous behaviour towards humans and the environment, and also to the robot. With the HSR, primary areas of concern for safety are during the navigation and manipulation stages of a task. We implement obstacle inflation in order to provide forbidden zones for the robot, preventing damage to surroundings and itself. In the STRANDS package, we have human-aware navigation whereby the robot will slow down in proximity of humans. 
+Safety is our priority in deploying real robot systems. We firstly must avoid conducting any dangerous behaviour towards humans and the environment, and also to the robot. With the HSR, primary areas of concern for safety are during the navigation and manipulation stages of a task. We implement obstacle inflation in order to provide forbidden zones for the robot, preventing damage to surroundings and itself. 
+We use code provided by the STRANDS project to provide our HSR with safe behaviours. First, we carry out high level navigation planning on a \emph{topological map} of the environment. Whenever a robot traverses an edge on this map, data is collected about the success and duration of the navigation. Our robots collect data over long periods of time, which feeds back into our navigation planning. We model the uncertainty of success in the environment which allows us to plan to obtain \emph{probabilistic formal guarantees} which provide us with a guaranteed level of success and safety. Second, we use a monitored navigation framework, which provides a hierarchy of recovery behaviours, such as requesting help from nearby humans. This is detailed further in Section \ref{nav}.
 
 \subsection{System Design}
 \subsubsection{Keep Moving - }
@@ -209,7 +217,7 @@ are learnt from demonstrations---allowing also the use by non-experts---using a 
 \end{figure*}
 Team Leader, Mark Finean, has adapted the manipulation stack to incorporate grasp synthesis on the object point clouds. The object recognition system identifies the pose of the object which is used for segmenting the point cloud. This is fed to our grasp synthesis implementation of GPD \cite{GPD1} \cite{GPD2}. Grasp synthesis outputs the 6-dimensional pose of approach for the highest ranked grasp. The approach described as above is less reliable for small objects such as cutlery. Instead, we implement a custom visual feedback system that uses the in-hand camera to align and orient the end effector to ensure a successful grasp.  
 
-\subsection{Navigation}
+\subsection{Navigation}\label{nav}
 
 To enable robust navigation, we take a hierarchical approach to navigation. The hierarchy is structured around a topological map in which discrete locations are connected by directed edges~\cite{jpulido2015NowOrLater}. Edges correspond to navigation actions the robot can perform to transition between locations. These may be standard \texttt{move\_base} actions, social navigation, closed loop controllers (such as wall following or door passing), or teach-and-repeat paths. Choices between the actions are made by a Markov decision process-based planner which jointly optimises for success probability and completion time, using probabilistic models learnt online through experience~\cite{LPH14b}. To ensure the robot does not get stuck we employ a monitored navigation layer which monitors the execution of the low level edge actions and performs recovery behaviours (e.g. backtracking, HRI) to correct observed problems~\cite{strands@ram}. This collection of techniques drove the STRANDS robots for over 360km of autonomous navigation in human-populated environments. We will extend the framework to enable integration of ORI's visual teach-and-repeat paradigm, to enable the robot to navigate in areas where laser-based localisation is likely to result in imprecise navigation. We will also look to integrate some of ORI's previous 3D mapping work (e.g.~\cite{AmayoICRA2016}) to increase the accuracy of the robot's environment representation. 
 %We have used this to robustly navigate the arena of the Partner Robot Challenge arena at WRS 2018 and RoboCup 2019, where our HSR needed to reach different parts of the simulated house environment and stop before a closed
