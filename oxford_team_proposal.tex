@@ -55,10 +55,7 @@ in this year's WRS competition. Our first experience competing with the Toyota H
 Support Robot was at WRS 2018, where we competed in the Partner 
 Robot Challenge. We have since competed at RoboCup 2019 in the DSPL @Home league.
 Our research interests are centred around long-term
-autonomy, mobility, robot learning and knowledge representation. 
-%Advances in these directions will enable service robots to interact with humans
-%and complete useful everyday tasks in typical household settings. 
-We aim to demonstrate robust and intelligent autonomous behaviour, that uses
+autonomy, mobility, robot learning and knowledge representation. We aim to demonstrate robust and intelligent autonomous behaviour, that uses
 experience to learn and refine a growing set of robot skills, on the Toyota
 HSR.
 \end{abstract}
@@ -87,27 +84,13 @@ competition.
 
 The WRS Partner (Real Space) league affords a tangible domain in
 which existing ORI research can be applied, and which provides new challenges
-for the group.
-%We successfully applied for a Toyota Human Support Robot (HSR) in 2018
-%and received the robot in late July. Despite the short amount of time we
-%had with the HSR, 
-We competed in the Partner Robot Challenge of WRS in the October 2018 and have since competed in the 2019 RoboCup@Home competition, placing $6^{th}$ out of 10 on our first attempt (see Figure~\ref{fig:robocup}). 
+for the group. We competed in the Partner Robot Challenge of WRS in the October 2018 and have since competed in the 2019 RoboCup@Home competition, placing $6^{th}$ out of 10 on our first attempt (see Figure~\ref{fig:robocup}). 
 The HSR robot allows us to focus on developing the
 intelligence required for successfully completing the WRS tasks, 
 without the added burden of building and maintaining a custom platform. 
 Competing in the 2020 WRS event will allow us to demonstrate 
 the capabilities presented in this document and will provide valuable experience
 for our future participations.
-
-%\begin{figure}[tb]
-%  \begin{center}
-%    \includegraphics[width=.32\columnwidth, clip, trim=0 0ex 0ex 50ex]{images/team_orion.jpg}
-%    \includegraphics[width=.32\columnwidth, clip, trim=0 0ex 0ex 50ex]{images/bring_me.jpg}
-%    \includegraphics[width=.32\columnwidth, clip, trim=0 0ex 0ex 50ex]{images/hsr_grasping.jpg}
-%  \end{center} 
-%  \caption{\emph{Left:} Team ORIon at the World Robot Summit (WRS) 2018 in Tokyo, Japan. \emph{Middle:}~Setup for the ``Bring me'' task. \emph{Right:} HSR grasping a plant.}
-%  \label{fig:wrs}
-%\end{figure}
 
 \begin{figure}[tb]
   \begin{center}
@@ -121,26 +104,19 @@ for our future participations.
 \section{Technical Challenge}
 \subsection{Technical Challenges for 4S}
 \subsubsection{Speed}
-There is a careful balance in determining the speed at which a robot should operate. For accomplishing tasks around the home, we typically want them performed as fast as possible, while also minimising the risk of breakages and harm to either humans or the robot. The address this, the speed of base movement is adjusted based on the distance to obstacles. In clear areas of space, the robot is allowed to move much faster. Similarly, when then robot arm is operating in a more confined space, the speed of movements is restricted.
+There is a careful balance in determining the speed at which a robot should operate. For accomplishing tasks around the home, we typically want them performed as fast as possible, while also minimising the risk of breakages and harm to either humans or the robot. To address this, the speed of base movement is adjusted based on the distance to obstacles. In clear areas of space, the robot is allowed to move much faster. Similarly, when then robot arm is operating in a more confined space, the speed of movements is restricted.
 
 \subsubsection{Smooth/Smart}
-The impression of a smooth and intelligent robot can also be derived from having a robust robot that uses feedback to verify its actions. In RoboCup@Home 2019, we used force-torque calculations on the wrist to inform the robot whether objects had been released from the gripper. When trying to manipulate a small object our HSR will first try to segment point clouds to generate an optimal grasp pose. In the case of failure, it will resort to a visual feedback system in the hand camera to attempt the task. For key phrases, we implement hotword detection to reduce execution times and to give communication with the robot a more natural and fluid feel. 
-In addition, we provide smart, robust behaviours at the task level using state machines. 
-By using state machines as an execution framework, we allow the robot to continue acting in the environment even after something unexpected has happened.
-This provides much smarter behaviours than a hard coded approach.
+The impression of a smooth and intelligent robot can also be derived from having a robust robot that uses feedback to verify its actions. In RoboCup@Home 2019, we used force-torque calculations on the wrist to inform the robot whether objects had been released from the gripper. When trying to manipulate a small object our HSR will first try to segment point clouds to generate an optimal grasp pose. In the case of failure, it will resort to a visual feedback system in the hand camera to attempt the task. For key phrases, we implement hotword detection to reduce execution times and to give communication with the robot a more natural and fluid feel. We also provide smart, robust behaviours at the task level by using state machines as an execution framework. This allows the robot to continue acting in the environment even after something unexpected has happened and provides much smarter behaviours than a hard coded approach.
 
 \subsubsection{Stable}
-To develop stable robotics systems, we care about robots with robust behaviours that can react to failure at the point of execution. 
-We do this by explicitly modelling the uncertainty in the environment at planning time.
-In doing this, rather than computing fixed plans over our robots behaviour, we can instead compute \emph{policies}.
-By using policies, if something unexpected occurs at execution-time, our robots are able to react to this dynamically.
-For example, with our navigation framework, if a door we expect to be open is actually closed, we can take an alternate route, or ask for help \cite{lacerda2019probabilistic}.
+We are interested in robots with robust behaviours that can react to failure at the point of execution. Our approach is to explicitly model the uncertainty in the environment at planning time. By doing this, rather than computing fixed plans over our robots behaviour, we can compute \emph{policies}. If something unexpected occurs at execution-time, our robots are able to react to this dynamically. For example, if a door we expect to be open is actually closed, we can take an alternate route, or ask for help \cite{lacerda2019probabilistic}.
 
 \subsubsection{Safe}
-Safety is our priority in deploying real robot systems. We firstly must avoid conducting any dangerous behaviour towards humans and the environment, and also to the robot. With the HSR, primary areas of concern for safety are during the navigation and manipulation stages of a task. We implement obstacle inflation in order to provide forbidden zones for the robot, preventing damage to surroundings and itself. 
-We use code provided by the STRANDS project to provide our HSR with safe behaviours. First, we carry out high level navigation planning on a \emph{topological map} of the environment. Whenever a robot traverses an edge on this map, data is collected about the success and duration of the navigation. Our robots collect data over long periods of time, which feeds back into our navigation planning. We model the uncertainty of success in the environment which allows us to plan to obtain \emph{probabilistic formal guarantees} which provide us with a guaranteed level of success and safety. Second, we use a monitored navigation framework, which provides a hierarchy of recovery behaviours, such as requesting help from nearby humans. This is detailed further in Section \ref{nav}.
+Safety is our priority in deploying real robot systems. We firstly must avoid conducting any dangerous behaviour towards humans and the environment, and also to the robot. With the HSR, primary areas of concern for safety are during the navigation and manipulation stages of a task. We implement obstacle inflation in order to provide forbidden zones for the robot, preventing damage to surroundings and itself. Code provided by the STRANDS project provides our HSR with safe behaviours. We carry out high level navigation planning on a \emph{topological map} of the environment and whenever the robot traverses an edge on this map, data is collected about the success and duration of the navigation. Our robots collect data over long periods of time, which feeds back into our navigation planning. We model the uncertainty of success in the environment which allows us to plan to obtain \emph{probabilistic formal guarantees}, providing us with a guaranteed level of success and safety. Our monitored navigation framework provides a hierarchy of recovery behaviours, such as requesting help from nearby humans (detailed further in Section \ref{nav}).
 
 \subsection{System Design}
+
 \subsubsection{Keep Moving - }
 The STRANDS' person detection continues to operate and enable robot locomotion, albeit at lesser speeds when in the presence of humans.
 
@@ -152,21 +128,10 @@ Our monitored navigation package detects navigation errors and enables the robot
 
 \section{Software development policy}
 \subsection{Tools}
-Git is used for version control. All members develop on their own forks and branches of their sub-team's repository. The master branch is reserved fully tested and working implementations. Merge requests are subject to scrutiny by the team and approved by sub-team leaders. Communication within the team is typically executed via Slack.
+Git is used for version control. Communication within the team is typically executed via Slack.
 
 \subsection{Open source software used by your team.}
 GPD and GPG packages are used to generate and rank grasp poses on a segmented point cloud \cite{GPD1} \cite{GPD2}. We use `MoveIt!' in conjunction with the Toyota motion planner implementations to provide motion planning solutions \cite{MoveIt1} \cite{MoveIt2}. Point Cloud Library (PCL) is used to perform point cloud segmentations, primarily to feed into our grasp synthesis/manipulation pipeline \cite{PCL}. We use YOLOv2 to perform our object detection \cite{yolo}. We use and intend to incorporate many elements from the EU STRANDS Project\footnote{\url{http://strands-project.eu}} further detailed in the `Additional Innovative Technologies' section. \cite{strands@ram} \cite{dondrup2015tracker} \cite{duckworth_aamas2016}. Google Speech-to-Text API is our primary method to transcribe speech.  PocketSphinx and WaveNet provide alternative speech transcription in case of network connection failure \cite{pocketsphinx} \cite{wavenet}.
-%We list below the open source software used in our system:
-%\begin{itemize}   
-%    \item GPD and GPG - these two packages are used to generate and rank grasp poses on a segmented point cloud \cite{GPD1} \cite{GPD2}.\\
-%    \item MoveIt - we use `MoveIt!' in conjunction with the Toyota motion planner implementations to provide motion planning solutions \cite{MoveIt1} \cite{MoveIt2}.\\
-%    \item Point Cloud Library (PCL) - we use the PCL libraries to perform point segmentations, primarily to feed into our grasp synthesis/manipulation pipeline \cite{PCL}.\\
-%    \item YOLOv2 - We currently use YOLOv2 to perform our object detection \cite{yolo}. \\
-%    \item STRANDS - We used and intend to incorporate many elements from the EU STRANDS Project\footnote{\url{http://strands-project.eu}} such as person tracking, topological, human-aware robust navigation, object detection, identification and classification; autonomous online object learning; human detection, skeleton tracking, and activity analysis; basic human-robot interaction via speech and screen; and goal management and task planning. \cite{strands@ram} \cite{dondrup2015tracker} \cite{duckworth_aamas2016}.\\
-%    \item Google Speech-to-Text API - primary method to transcribe speech. \\
-%    \item PocketSphinx - alternative speech transcription in case of network connection failure. \cite{pocketsphinx}\\
-%    \item WaveNet - alternative speech transcription in case of network connection failure. \cite{wavenet}\\
-%\end{itemize} 
 
 \subsection{Role assignment policy of each member}
 New team members are encouraged to pursue the area of research which interests them most and contribute to the respective team. Sub-teams determine their sub-group leader of that area of research - typically a post-graduate student since they are most involved in the research. Tasks are formulated by sub-team leaders and presented  to the sub-team for members to decide which tasks best suit their skills set. Sub-teams are coordinated by the Team Leader who keeps track of the progress of sub-teams and coordinates integration, testing and any group sessions that might be required.
@@ -184,24 +149,14 @@ New team members are encouraged to pursue the area of research which interests t
   \label{fig:mk}
   \vspace{-3ex}
 \end{figure}
-
-The capabilities of our system build upon the EU STRANDS Project. Key members of this project (Nick Hawes, Lars Kunze, Bruno Lacerda) are part of \teamori. The STRANDS Project deployed autonomous mobile robots (MetraLabs SCITOS A5, see Fig.~\ref{fig:mk}) in a range of human-populated environments for long durations~\cite{strands@ram}. These robots provided a range of services to real users, similar to the tasks required in the WRS. The enabling software used on the robots, the ROS-based \emph{STRANDS Core System} (SCS), therefore gives \teamori{} an ideal basis for development towards tasks in the Partner (Real Space) league. 
-%The SCS is open source, and \teamori{} will contribute to the continued maintenance of this substantial code base which is useful for our entire community. Although originally developed for MetraLabs robots, the SCS has recently been ported to other robots, and \teamori{} will contribute an open port of this software to the Toyota HSR. 
-The SCS builds upon standard ROS components to provide the following capabilities, all of which have been tested in long-term deployments in real user environments: topological, human-aware robust navigation; object detection, identification and classification; autonomous online object learning; human detection, skeleton tracking, and activity analysis; basic human-robot interaction via speech and screen; and goal management and task planning. Our capabilities for person tracking~\cite{dondrup2015tracker} can be seen online\footnote{\url{https://youtu.be/zdnvhQU1YNo}} and formed the basis of many interactive behaviours, including social navigation, and activity learning and recognition~\cite{duckworth_aamas2016}, which are relevant to the WRS tasks. 
+The capabilities of our system build upon the EU STRANDS Project. Key members of this project (Nick Hawes, Lars Kunze, Bruno Lacerda) are part of \teamori. The STRANDS Project deployed autonomous mobile robots (MetraLabs SCITOS A5, see Fig.~\ref{fig:mk}) in a range of human-populated environments for long durations~\cite{strands@ram}. These robots provided a range of services to real users, similar to the tasks required in the WRS. The enabling software used on the robots, the ROS-based \emph{STRANDS Core System} (SCS), therefore gives \teamori{} an ideal basis for development towards tasks in the Partner (Real Space) league. The SCS builds upon standard ROS components to provide the following capabilities, all of which have been tested in long-term deployments in real user environments: topological, human-aware robust navigation; object detection, identification and classification; autonomous online object learning; human detection, skeleton tracking, and activity analysis; basic human-robot interaction via speech and screen; and goal management and task planning. Our capabilities for person tracking~\cite{dondrup2015tracker} can be seen online\footnote{\url{https://youtu.be/zdnvhQU1YNo}} and formed the basis of many interactive behaviours, including social navigation, and activity learning and recognition~\cite{duckworth_aamas2016}, which are relevant to the WRS tasks. 
 
 
 \subsection{Manipulation -- Learning new skills}
 
 The robot will require a number of key skills to successfully perform a wide
 variety of tasks that involve interaction with the environment or other
-agents (Figure \ref{fig:baxter_water_task}), eg. pushing buttons, tuning handles, grasping and passing objects, etc. 
-
-To deliver these capabilities we have started from \teamori{} member Lars Kunze's previous experience of knowledge-enabled manipulation~\cite{kunze15aij}. This previous work resulted in a system which could grasp an egg (\url{https://www.youtube.com/watch?v=jLz87H4q3hU}) and make a pancake (\url{https://www.youtube.com/watch?v=YQs5gRei8k4}). 
-
-We aim to build in our framework the ability
-to learn and refine new skills as tasks change or as new tasks need to be added
-the task repertoire. Such capability will be based on \teamori{} 
-member Ioannis Havoutis' background in learning, synthesis and control of 
+agents (Figure \ref{fig:baxter_water_task}). To learn and refine new skills as tasks change, or as new tasks need to be added the task repertoire, capabilities will be based on \teamori{} member Ioannis Havoutis' background in learning, synthesis and control of 
 complex motions \cite{Havoutis16SSRR}. Skill representations
 are learnt from demonstrations---allowing also the use by non-experts---using a probabilistic generative encoding \cite{Havoutis17ICRA}. Motion generation is formulated as an optimal control problem that adapts to changing task configurations on-line \cite{Zeestraten17IROS,Zeestraten2017-RAL} (\url{https://youtu.be/NiRPE0egymk}).
 \begin{figure*}[!t]
@@ -219,35 +174,10 @@ Team Leader, Mark Finean, has adapted the manipulation stack to incorporate gras
 
 \subsection{Navigation}\label{nav}
 
-To enable robust navigation, we take a hierarchical approach to navigation. The hierarchy is structured around a topological map in which discrete locations are connected by directed edges~\cite{jpulido2015NowOrLater}. Edges correspond to navigation actions the robot can perform to transition between locations. These may be standard \texttt{move\_base} actions, social navigation, closed loop controllers (such as wall following or door passing), or teach-and-repeat paths. Choices between the actions are made by a Markov decision process-based planner which jointly optimises for success probability and completion time, using probabilistic models learnt online through experience~\cite{LPH14b}. To ensure the robot does not get stuck we employ a monitored navigation layer which monitors the execution of the low level edge actions and performs recovery behaviours (e.g. backtracking, HRI) to correct observed problems~\cite{strands@ram}. This collection of techniques drove the STRANDS robots for over 360km of autonomous navigation in human-populated environments. We will extend the framework to enable integration of ORI's visual teach-and-repeat paradigm, to enable the robot to navigate in areas where laser-based localisation is likely to result in imprecise navigation. We will also look to integrate some of ORI's previous 3D mapping work (e.g.~\cite{AmayoICRA2016}) to increase the accuracy of the robot's environment representation. 
-%We have used this to robustly navigate the arena of the Partner Robot Challenge arena at WRS 2018 and RoboCup 2019, where our HSR needed to reach different parts of the simulated house environment and stop before a closed
-%door is opened. 
+To enable robust navigation, we take a hierarchical approach to navigation. The hierarchy is structured around a topological map in which discrete locations are connected by directed edges~\cite{jpulido2015NowOrLater}. Edges correspond to navigation actions the robot can perform to transition between locations. These may be standard \texttt{move\_base} actions, social navigation, closed loop controllers (such as wall following or door passing), or teach-and-repeat paths. Choices between the actions are made by a Markov decision process-based planner which jointly optimises for success probability and completion time, using probabilistic models learnt online through experience~\cite{LPH14b}. To ensure the robot does not get stuck we employ a monitored navigation layer which monitors the execution of the low level edge actions and performs recovery behaviours (e.g. backtracking, HRI) to correct observed problems~\cite{strands@ram}. We will extend the framework to enable integration of ORI's visual teach-and-repeat paradigm, to enable the robot to navigate in areas where laser-based localisation is likely to result in imprecise navigation. 
 
 \subsection{Semantic Vision}
-%Learning and recognising objects during operation is a key task for a mobile service robot in human environments. 
 \teamori{} will exploit the work done in the STRANDS Project in terms of autonomous object learning plus the recognition and modelling of previously unseen objects. The work is based on the \emph{meta-room} approach which builds dense RGB-D reconstructions of regions around locations in the robot's topological map. Objects are found through inspecting or differencing meta-rooms. Surfaces and possible objects found in meta-rooms become either targets for more detailed view planning~\cite{kunze14indirect} (see Figure~\ref{fig:mk}) leading to recognition, or for autonomous object learning~\cite{Faeulhammer:2016}. Our recognition pipeline mixes top-down semantic reasoning with bottom-up appearance-based processing for scene understanding \cite{kunze14topdown}, jointly estimating object locations and categories based on qualitative spatial models\cite{kunze14bootstrapping}. The object learning process can build detailed 3D models entire without supervision~\cite{Faeulhammer:2016}. Previously unknown objects are processed with a mix of deep vision and semantic web technologies to provide the robot with an initial estimate of their identity~\cite{aloof@icra17}.
-
-
-%\subsection{Robot System Integration}
-
-%A substantial effort will be needed to develop behaviours that are robust to
-%changes in the environment and to noise typical of real-world scenarios. In this
-%respect we will exploit our experience from the STRANDS project 
-%\cite{strands@ram} and build upon the tested SCS. Some of this software has already been integrated to our stack for the needs of the Partner Robot Challenge of WRS.
-%Given the similarity of the HSR to the SCITOS platform, and other platforms the team are familiar with, we predict that porting the SCS to the Toyota HSR will be an easy task. SCS was developed to be expandable and is built with standard ROS components which are also supported by the Toyota HSR. 
-%Additionally, we will build a mock-up of the arena to
-%allow us to run live robot trials and limit simulation use to the development
-%phase. We aim to schedule recurring trials as our framework is developed, to
-%ensure that robot behaviours are successful and to collect data on the 
-%success probabilities of tasks and sequences of tasks.
-
-%\teamori{} benefits from the many years of experience of the team of creating integrated robot systems. Team members contributed to the first public demonstration of a self-driving car in the UK\footnote{\url{https://www.epsrc.ac.uk/newsevents/news/lutzpathfinder/}}, and all members have contributed to integrated robot systems demonstrated at science museums, public engagement events and trade shows across Europe. All of these systems integrate perception, planning and action in non-trivial ways. 
-%Such integration is central to producing a functional and reliable system, but can be incredibly challenging when trying to produce novel capabilities for robots in task environments which you are only able to experience a short time before a deadline. 
-%We had our first competition in October 2018 in the Partner Robot Challenge of WRS. 
-%Most of the team members were part of this experience and now have demonstrated
-%our team's ability to develop, integrate and test solutions on a very short
-%time schedule; we achieved in competing given only 3 weeks of preparation. The team has since expanded to bring in more undergraduate and post-graduate students, enabling us to improve our stack to place $6^{th}$ out of 10 in the RoboCup@Home 2019 competition.
-%The team's joint experience of bringing diverse robot capabilities together for successful demos will enable the team to start working effectively very quickly, and to deal with common team and system teething problems smoothly. Our experience on systems which span the capability spectrum from low-level sensing to high-level cognition means that the diverse capabilities described above will be successfully integrated to produce a competitive entry in the 2020 WRS competition.
 
 \section{Relevant publications }
 Relevant publications are mentioned in the body of this document and provided in the references section.
