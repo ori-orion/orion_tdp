@@ -273,7 +273,6 @@
 	Bdsk-Url-1 = {http://dx.doi.org/10.1109/LRA.2016.2522086}}
 	
 @article{GPD1,
-abstract = {Recently, a number of grasp detection methods have been proposed that can be used to localize robotic grasp configurations directly from sensor data without estimating object pose. The underlying idea is to treat grasp perception analogously to object detection in computer vision. These methods take as input a noisy and partially occluded RGBD image or point cloud and produce as output pose estimates of viable grasps, without assuming a known CAD model of the object. Although these methods generalize grasp knowledge to new objects well, they have not yet been demonstrated to be reliable enough for wide use. Many grasp detection methods achieve grasp success rates (grasp successes as a fraction of the total number of grasp attempts) between 75{\%} and 95{\%} for novel objects presented in isolation or in light clutter. Not only are these success rates too low for practical grasping applications, but the light clutter scenarios that are evaluated often do not reflect the realities of real world grasping. This paper proposes a number of innovations that together result in a significant improvement in grasp detection performance. The specific improvement in performance due to each of our contributions is quantitatively measured either in simulation or on robotic hardware. Ultimately, we report a series of robotic experiments that average a 93{\%} end-to-end grasp success rate for novel objects presented in dense clutter.},
 archivePrefix = {arXiv},
 arxivId = {1706.09911v1},
 author = {ten Pas, Andreas and Gualtieri, Marcus and Saenko, Kate and Platt, Robert},
@@ -292,7 +291,6 @@ year = {2017}
 }
 
 @inproceedings{GPD2,
-abstract = {This paper considers the problem of grasp pose detection in point clouds. We follow a general algorithmic structure that first generates a large set of 6-DOF grasp candidates and then classifies each of them as a good or a bad grasp. Our focus in this paper is on improving the second step by using depth sensor scans from large online datasets to train a convolutional neural network. We propose two new representations of grasp candidates, and we quantify the effect of using prior knowledge of two forms: instance or category knowledge of the object to be grasped, and pretraining the network on simulated depth data obtained from idealized CAD models. Our analysis shows that a more informative grasp candidate representation as well as pretraining and prior knowledge significantly improve grasp detection. We evaluate our approach on a Baxter Research Robot and demonstrate an average grasp success rate of 93{\%} in dense clutter. This is a 20{\%} improvement compared to our prior work.},
 archivePrefix = {arXiv},
 arxivId = {1603.01564v2},
 author = {Gualtieri, Marcus and ten Pas, Andreas and Saenko, Kate and Platt, Robert},
@@ -306,5 +304,72 @@ pages = {598--605},
 publisher = {IEEE},
 title = {{High precision grasp pose detection in dense clutter}},
 url = {https://github.com/atenpas/gpd http://ieeexplore.ieee.org/document/7759114/},
+year = {2016}
+}
+
+@article{MoveIt1,
+archivePrefix = {arXiv},
+arxivId = {1404.3785},
+author = {Coleman, David and Sucan, Ioan and Chitta, Sachin and Correll, Nikolaus},
+eprint = {1404.3785},
+file = {:Users/mfinean/Library/Application Support/Mendeley Desktop/Downloaded/Coleman et al. - Unknown - Reducing the Barrier to Entry of Complex Robotic Software a MoveIt! Case Study.pdf:pdf},
+keywords = {Barrier to Entry,Index Terms-Robotic Software Frameworks,Motion Planning,MoveIt!,Setup,Usability},
+title = {{Reducing the Barrier to Entry of Complex Robotic Software: a MoveIt! Case Study}},
+url = {www.joser.org http://arxiv.org/abs/1404.3785},
+year = {2014}
+}
+
+@article{MoveIt2,
+author = {Sucan, Ioan and Chitta, Sachin},
+keywords = {MoveIt!},
+title = {{“MoveIt”}},
+url = {http://moveit.ros.org},
+}
+
+@InProceedings{PCL,
+  author    = {Radu Bogdan Rusu and Steve Cousins},
+  title     = {{3D is here: Point Cloud Library (PCL)}},
+  booktitle = {{IEEE International Conference on Robotics and Automation (ICRA)}},
+  month     = {May 9-13},
+  year      = {2011},
+  address   = {Shanghai, China}
+}
+
+@article{yolo,
+  title={YOLO9000: Better, Faster, Stronger},
+  author={Redmon, Joseph and Farhadi, Ali},
+  journal={arXiv preprint arXiv:1612.08242},
+  year={2016}
+}
+
+
+@article{snowboy,
+  title={Snowboy - Hotword Detection},
+  author={KITT.AI.},
+  url = {https://github.com/kitt-ai/snowboy},
+}
+
+@INPROCEEDINGS{pocketsphinx, 
+author={D. {Huggins-Daines} and M. {Kumar} and A. {Chan} and A. W. {Black} and M. {Ravishankar} and A. I. {Rudnicky}}, 
+booktitle={2006 IEEE International Conference on Acoustics Speech and Signal Processing Proceedings}, 
+title={Pocketsphinx: A Free, Real-Time Continuous Speech Recognition System for Hand-Held Devices}, 
+year={2006}, 
+volume={1}, 
+number={}, 
+pages={I-I}, 
+keywords={human computer interaction;mobile handsets;speech recognition;real-time continuous speech recognition system;hand-held devices;PocketSphinx;embedded devices;mobile devices;human-computer interactive applications;large vocabulary continuous speech recognition;206 MHz;Real time systems;Speech recognition;Open source software;Hardware;Natural languages;Operating systems;Application software;Vocabulary;Licenses;Graphical user interfaces}, 
+doi={10.1109/ICASSP.2006.1659988}, 
+ISSN={1520-6149}, 
+month={May},}
+
+@article{wavenet,
+abstract = {This paper introduces WaveNet, a deep neural network for generating raw audio waveforms. The model is fully probabilistic and autoregressive, with the predictive distribution for each audio sample conditioned on all previous ones; nonetheless we show that it can be efficiently trained on data with tens of thousands of samples per second of audio. When applied to text-to-speech, it yields state-of-the-art performance, with human listeners rating it as significantly more natural sounding than the best parametric and concatenative systems for both English and Mandarin. A single WaveNet can capture the characteristics of many different speakers with equal fidelity, and can switch between them by conditioning on the speaker identity. When trained to model music, we find that it generates novel and often highly realistic musical fragments. We also show that it can be employed as a discriminative model, returning promising results for phoneme recognition.},
+archivePrefix = {arXiv},
+arxivId = {1609.03499},
+author = {van den Oord, Aaron and Dieleman, Sander and Zen, Heiga and Simonyan, Karen and Vinyals, Oriol and Graves, Alex and Kalchbrenner, Nal and Senior, Andrew and Kavukcuoglu, Koray},
+eprint = {1609.03499},
+file = {:Users/mfinean/Library/Application Support/Mendeley Desktop/Downloaded/Van Den Oord et al. - Unknown - WAVENET A GENERATIVE MODEL FOR RAW AUDIO.pdf:pdf},
+title = {{WaveNet: A Generative Model for Raw Audio}},
+url = {https://arxiv.org/pdf/1609.03499.pdf http://arxiv.org/abs/1609.03499},
 year = {2016}
 }
