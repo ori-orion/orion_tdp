@@ -50,7 +50,7 @@
 \begin{abstract}
 This document outlines the approach \textit{\teamori} will take to the 
 World Robot Summit (WRS) 2020 Partner (Real Space) competition. 
-We are a relatively new team with a strong research background and we aspire to compete 
+With a strong research background, we aspire to compete 
 in this year's WRS competition. Our first experience competing with the Toyota Human 
 Support Robot was at WRS 2018, where we competed in the Partner 
 Robot Challenge. We have since competed at RoboCup 2019 in the DSPL @Home league.
@@ -80,11 +80,7 @@ HSR.
 \section{Introduction}
 
 \textit{\teamori{}} is a relatively new team created within the Oxford Robotics Institute
-(ORI) at the University of Oxford. The team consists of undergraduate and
-graduate students; robotics researchers; and faculty members of ORI. We come
-from a strong research institute with seminal work in mobile autonomy and
-machine learning. ORI has a significant track record in \emph{field robotics}
-and real-world trials of autonomous systems. It also has a team of professional
+(ORI) at the University of Oxford. The team is led by Prof. Nick Hawes, who has extensive background in intelligent autonomous robots that can work with or for humans, and Dr. Ioannis Havoutis, an expert in combining motion planning with machine learning. The core of the team for 2020 will be ORI post-doctoral researchers and PhD students, and undergraduates members. We come from a strong research institute with seminal work in mobile autonomy and machine learning. ORI has a significant track record in \emph{field robotics} and real-world trials of autonomous systems. It also has a team of professional
 hardware and software engineers. This experience and support is leveraged
 to create a robotics competition team capable of delivering across the whole
 competition. 
@@ -122,45 +118,36 @@ for our future participations.
   \label{fig:robocup}
 \end{figure}
 
-\subsection{Team Composition}
-
-The team is led by Prof. Nick Hawes, who has extensive background in
-intelligent autonomous robots that can work with or for humans, and Dr. Ioannis Havoutis, an expert in combining motion planning with machine learning. The core of the team for 2020 will be ORI post-doctoral researchers, PhD students, and undergraduates members.
-
 \section{Technical Challenge}
 \subsection{Technical Challenges for 4S}
- Regarding Service Robots, describe what you understand for each aspect in the 4S philosophy (Speed, Smooth/Smart, Stable and Safe), the state-of-the-art, technical challenges, and your own approaches to the problem:
-
 \subsubsection{Speed}
 There is a careful balance in determining the speed at which a robot should operate. For accomplishing tasks around the home, we typically want them performed as fast as possible, while also minimising the risk of breakages and harm to either humans or the robot. The address this, the speed of base movement is adjusted based on the distance to obstacles. In clear areas of space, the robot is allowed to move much faster. Similarly, when then robot arm is operating in a more confined space, the speed of movements is restricted.
 
 \subsubsection{Smooth/Smart}
-We believe that the impression of a smooth and intelligent robot can also be derived from having a robust robot that uses feedback to verify its actions. In RoboCup@Home 2019 event, we used force-torque calculations on the wrist to inform the robot whether objects such as a carrier bag had been released from the gripper. Similarly, when trying to manipulate a small object the HSR will first try to segment point clouds to generate an optimal grasp pose. In the case of failure, it will resort to a visual feedback system in the hand camera to attempt the task. For key phrases, we implement hot-word detection to firstly reduce execution times, but also to give communication with the robot a more natural and fluid feel. 
+The impression of a smooth and intelligent robot can also be derived from having a robust robot that uses feedback to verify its actions. In RoboCup@Home 2019, we used force-torque calculations on the wrist to inform the robot whether objects had been released from the gripper. When trying to manipulate a small object our HSR will first try to segment point clouds to generate an optimal grasp pose. In the case of failure, it will resort to a visual feedback system in the hand camera to attempt the task. For key phrases, we implement hotword detection to reduce execution times and to give communication with the robot a more natural and fluid feel. 
 
 \subsubsection{Stable}
 
 
 \subsubsection{Safe}
-Safety is the number one priority for us in deploying real robot systems. We firstly must avoid conducting any dangerous behaviour towards humans and the environment, and secondly to the robot system itself. With a robot such as the Toyota HSR, the primary areas of concern for safety are during the navigation and manipulation stages of a task. 
+Safety is our priority in deploying real robot systems. We firstly must avoid conducting any dangerous behaviour towards humans and the environment, and also to the robot. With the HSR, primary areas of concern for safety are during the navigation and manipulation stages of a task. We implement obstacle inflation in order to provide forbidden zones for the robot, preventing damage to surroundings and itself. In the STRANDS package, we have human-aware navigation whereby the robot will slow down in proximity of humans. 
 
-We implement a safety radius (obstacle inflation) in order to provide forbidden zones for the robot to prevent damage to surroundings and itself. In the STRANDS package which we hope to fully incorporate, we have human-aware navigation whereby the robot will slow down in proximity of humans. 
+\subsection{System Design}
+\subsubsection{Keep Moving - }
+The STRANDS' person detection continues to operate and enable robot locomotion, albeit at lesser speeds when in the presence of humans.
 
-\subsection{System Design for “Keep moving”, “Move carefully” and “Be clever”}
-\subsubsection{Keep Moving}
-the STRANDS' person detection continues to operate and enable robot locomotion, albeit at lesser speeds when in the presence of humans.
+\subsubsection{Move carefully - }
+The 2D laser scanner enables the robot to maintain safe distances from it's surroundings such as walls. In the first WRS competition we attended, we noticed that the HSR would sometimes reverse without checking if their are objects behind it first. We have since rectified this in order to maxmimise safety. The STRANDS project 3D obstacle avoidance uses not only a planar 2D laser scanner for obstacle detections but also a downward-looking chest RGBD cam. We aim to incorporate this technology on the HSR platform by utilising the HSR's RGBD head camera while moving. 
 
-\subsubsection{Move carefully}
-The HSR is equipped as standard with a 2D laser scanner enabling the robot to maintain safe distances from it's surroundings such as walls. In the first WRS competition we attended, we noticed that our robot would sometimes reverse without checking if their are objects behind it first. We have since rectified this in order to maxmimise safety. The STRANDS project 3D obstacle avoidance used not only a planar 2D laser scanner for obstacle detections but also a downward-looking chest RGBD cam. We aim to incorporate this technology on the HSR platform by utilising the HSR's RGBD head camera while moving. 
-
-\subsubsection{Be Clever}
+\subsubsection{Be Clever - }
 Our monitored navigation package detects navigation errors and enables the robot to recover automatically, for example by backtracking when it becomes uncertain or stuck. 
 
 \section{Software development policy}
 \subsection{Tools}
-Git is used for version control and general software development. All members develop on their own forks and branches of the respective repository for their sub-team. The master branch is reserved for fully tested and working implementations. Merge requests are subject to scrutiny by the team and approved by sub-team leaders. Communication within the team is typically executed via Slack.
+Git is used for version control. All members develop on their own forks and branches of their sub-team's repository. The master branch is reserved fully tested and working implementations. Merge requests are subject to scrutiny by the team and approved by sub-team leaders. Communication within the team is typically executed via Slack.
 
 \subsection{Open source software used by your team.}
-We list the following open source software used in our system. GPD and GPG - these two packages are used to generate and rank grasp poses on a segmented point cloud \cite{GPD1} \cite{GPD2}. MoveIt - we use `MoveIt!' in conjunction with the Toyota motion planner implementations to provide motion planning solutions \cite{MoveIt1} \cite{MoveIt2}. Point Cloud Library (PCL) - we use the PCL libraries to perform point segmentations, primarily to feed into our grasp synthesis/manipulation pipeline \cite{PCL}. YOLOv2 - We currently use YOLOv2 to perform our object detection \cite{yolo}. STRANDS - We used and intend to incorporate many elements from the EU STRANDS Project\footnote{\url{http://strands-project.eu}} such as person tracking, topological, human-aware robust navigation, object detection, identification and classification; autonomous online object learning; human detection, skeleton tracking, and activity analysis; basic human-robot interaction via speech and screen; and goal management and task planning. \cite{strands@ram} \cite{dondrup2015tracker} \cite{duckworth_aamas2016}. Google Speech-to-Text API - primary method to transcribe speech.  PocketSphinx - alternative speech transcription in case of network connection failure \cite{pocketsphinx}. WaveNet - alternative speech transcription in case of network connection failure \cite{wavenet}.
+GPD and GPG packages are used to generate and rank grasp poses on a segmented point cloud \cite{GPD1} \cite{GPD2}. We use `MoveIt!' in conjunction with the Toyota motion planner implementations to provide motion planning solutions \cite{MoveIt1} \cite{MoveIt2}. Point Cloud Library (PCL) is used to perform point cloud segmentations, primarily to feed into our grasp synthesis/manipulation pipeline \cite{PCL}. We use YOLOv2 to perform our object detection \cite{yolo}. We use and intend to incorporate many elements from the EU STRANDS Project\footnote{\url{http://strands-project.eu}} further detailed in the `Additional Innovative Technologies' section. \cite{strands@ram} \cite{dondrup2015tracker} \cite{duckworth_aamas2016}. Google Speech-to-Text API is our primary method to transcribe speech.  PocketSphinx and WaveNet provide alternative speech transcription in case of network connection failure \cite{pocketsphinx} \cite{wavenet}.
 %We list below the open source software used in our system:
 %\begin{itemize}   
 %    \item GPD and GPG - these two packages are used to generate and rank grasp poses on a segmented point cloud \cite{GPD1} \cite{GPD2}.\\
@@ -174,7 +161,7 @@ We list the following open source software used in our system. GPD and GPG - the
 %\end{itemize} 
 
 \subsection{Role assignment policy of each member}
-New team members are encouraged to pursue the area of research which interests them most and contribute to the respective team. Sub-team are self-determining in who becomes the sub-group leader of that area of research - typically a post-graduate student since they are most involved in the research. Tasks are formulated by sub-team leaders and presented  to the sub-team for members to decide which tasks best suit their skills set or ambitions. Sub-teams are coordinated by the Team Leader who keeps track of the progress of sub-teams and coordinates integration, testing and any group sessions that might be required.
+New team members are encouraged to pursue the area of research which interests them most and contribute to the respective team. Sub-teams determine their sub-group leader of that area of research - typically a post-graduate student since they are most involved in the research. Tasks are formulated by sub-team leaders and presented  to the sub-team for members to decide which tasks best suit their skills set. Sub-teams are coordinated by the Team Leader who keeps track of the progress of sub-teams and coordinates integration, testing and any group sessions that might be required.
 
 \section{Additional Innovative technologies}
 \begin{figure}[tb]
@@ -190,7 +177,7 @@ New team members are encouraged to pursue the area of research which interests t
   \vspace{-3ex}
 \end{figure}
 
-The capabilities of our system build upon the capabilities developed over the last four years within the EU STRANDS Project\footnote{\url{http://strands-project.eu}}. Key members of this project (Nick Hawes, Lars Kunze, Bruno Lacerda) are part of \teamori. The STRANDS Project deployed autonomous mobile robots (MetraLabs SCITOS A5, see Fig.~\ref{fig:mk}) in a range of human-populated environments for long durations~\cite{strands@ram}. These robots provided a range of services to real users, similar to the tasks required in the WRS. The enabling software used on the robots, the ROS-based \emph{STRANDS Core System} (SCS), therefore gives \teamori{} an ideal basis for development towards tasks in the Partner (Real Space) league. 
+The capabilities of our system build upon the EU STRANDS Project. Key members of this project (Nick Hawes, Lars Kunze, Bruno Lacerda) are part of \teamori. The STRANDS Project deployed autonomous mobile robots (MetraLabs SCITOS A5, see Fig.~\ref{fig:mk}) in a range of human-populated environments for long durations~\cite{strands@ram}. These robots provided a range of services to real users, similar to the tasks required in the WRS. The enabling software used on the robots, the ROS-based \emph{STRANDS Core System} (SCS), therefore gives \teamori{} an ideal basis for development towards tasks in the Partner (Real Space) league. 
 %The SCS is open source, and \teamori{} will contribute to the continued maintenance of this substantial code base which is useful for our entire community. Although originally developed for MetraLabs robots, the SCS has recently been ported to other robots, and \teamori{} will contribute an open port of this software to the Toyota HSR. 
 The SCS builds upon standard ROS components to provide the following capabilities, all of which have been tested in long-term deployments in real user environments: topological, human-aware robust navigation; object detection, identification and classification; autonomous online object learning; human detection, skeleton tracking, and activity analysis; basic human-robot interaction via speech and screen; and goal management and task planning. Our capabilities for person tracking~\cite{dondrup2015tracker} can be seen online\footnote{\url{https://youtu.be/zdnvhQU1YNo}} and formed the basis of many interactive behaviours, including social navigation, and activity learning and recognition~\cite{duckworth_aamas2016}, which are relevant to the WRS tasks. 
 
@@ -220,7 +207,7 @@ are learnt from demonstrations---allowing also the use by non-experts---using a 
 	\label{fig:baxter_water_task}
 	\vspace{-3ex}
 \end{figure*}
-Team ORIon member, Mark Finean, has adapted the manipulation stack to incorporate grasp synthesis on the object point clouds. The object recognition system identifies the pose of the object which is used for segmenting the point cloud. This is fed to our grasp synthesis implementation of GPD \cite{GPD1} \cite{GPD2}. Grasp synthesis outputs the 6-dimensional pose of approach for the highest ranked grasp. The approach described as above is less reliable for small objects such as cutlery. Instead, we implement a custom visual feedback system that uses the in-hand camera to align and orient the end effector to ensure a successful grasp.  
+Team Leader, Mark Finean, has adapted the manipulation stack to incorporate grasp synthesis on the object point clouds. The object recognition system identifies the pose of the object which is used for segmenting the point cloud. This is fed to our grasp synthesis implementation of GPD \cite{GPD1} \cite{GPD2}. Grasp synthesis outputs the 6-dimensional pose of approach for the highest ranked grasp. The approach described as above is less reliable for small objects such as cutlery. Instead, we implement a custom visual feedback system that uses the in-hand camera to align and orient the end effector to ensure a successful grasp.  
 
 \subsection{Navigation}
 
@@ -268,9 +255,7 @@ Team Video: \url{}
 \section{Conclusion}
 \textit{\teamori{}} is a relatively new standard platform team that builds on the strong research 
 background of its team members and on extensive real-world robot operating
-experience, in a range of service tasks, similar to the WRS Partner (Real Space) tasks. 
-
-Competing in the 2020 WRS event in Japan will allow us to demonstrate 
+experience, in a range of service tasks, similar to the WRS Partner (Real Space) tasks. Competing in the 2020 WRS event in Japan will allow us to demonstrate 
 the presented capabilities on the HSR and will provide valuable experience
 for our up-and-coming team.
 
