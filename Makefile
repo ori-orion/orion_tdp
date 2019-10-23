@@ -1,19 +1,19 @@
-PREFIX = TDPTemplate
+MAIN = oxford_team_proposal
 
-TEXFILE = $(PREFIX).tex
-AUXFILE = $(PREFIX).aux
-PDFFILE = $(PREFIX).pdf
-SILENT  = @
+all: paper 
 
-TEMP	= *.aux *.bbl *.blg *.log *.out
-RMFILES = $(TEMP) *~ *.toc *.idx *.ilg *.ind *.synctex.gz \
-	  *.tmp *.log *.lot *.lof *.adx *.and *.abb *.ldx .temp* $(PREFIX).tar
+bib:
+	pdflatex $(MAIN)
+	bibtex $(MAIN)
+	pdflatex $(MAIN)
+	pdflatex $(MAIN)
 
-all:
-	$(SILENT) make -s clean
-	$(SILENT) rubber --pdf --force $(TEXFILE)
-	$(SILENT) rm -f $(TEMP)
-#	$(SILENT) evince $(PDFFILE)
+paper:
+	pdflatex $(MAIN)
 
 clean:
-	$(SILENT) rm -f $(RMFILES)
+	rm -f *.aux *.log *.toc *.bbl *.blg *.out *.spl
+
+cleaner:
+	rm -f *.aux *.log *.toc *.bbl *.blg *.out *.pdf *.spl *.dvi
+
