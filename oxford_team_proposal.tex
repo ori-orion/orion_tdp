@@ -31,6 +31,8 @@
 
 
 \newcommand{\teamori}{Team ORIon}
+\newcommand{\competitionyear}{2022}
+\newcommand{\robocuptitleshort}{RoboCup \competitionyear}
 
 \usepackage{hyperref}
 \hypersetup{
@@ -44,30 +46,25 @@
 %https://www.youtube.com/watch?v=sZ_oqFDUsnM
 \begin{document}
 
-\authorrunning{Ioannis Havoutis et al.}
+\authorrunning{Ricardo Cannizzaro et al.}
 
-\title{\teamori---2020 Team Description Paper}
+\title{\teamori\ --- 2022 Team Description Paper}
 
-\author{Ioannis Havoutis \and Nick Hawes \and Lars Kunze \and Bruno Lacerda 
-\and Mark Finean \and Charlie Street \and Marc Rigter \and Michael Painter \and Shu Ishida}
+\author{Ricardo Cannizzaro \and Clarissa Costen \and Matthew Budd \and Shu Ishida \and Marc Rigter \and Ioannis Havoutis \and Nick Hawes \and Lars Kunze \and Bruno Lacerda}
 \institute{Oxford Robotics Institute, Dept. of Engineering Science, University of Oxford, UK \\
-\texttt{cstreet@robots.ox.ac.uk} \\
-\url{http://ori.ox.ac.uk/robocup/}}
+\texttt{orion@oxfordrobotics.institute} \\
+\url{https://ori.ox.ac.uk/student-teams/team-orion}}
 
 \maketitle
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{abstract}
-This document outlines the approach \textit{\teamori} will take to the RoboCup@Home 2020 (DSPL).
-Our first experience competing with Toyota's Human Support Robot (HSR) was at the World Robot Summit (WRS) 2018, where we competed in the Partner 
-Robot Challenge. We have since competed at RoboCup 2019 in the DSPL @Home league.
-Our research interests are centred around long-term
-autonomy, mobility, robot learning and knowledge representation. 
-Advances in these directions will enable service robots to interact with humans
-and complete useful everyday tasks in typical household settings. 
-We aim to demonstrate robust and intelligent autonomous behaviour, that uses
-experience to learn and refine a growing set of robot skills, on the HSR.
+This document outlines the approach \textit{\teamori} will take to the RoboCup@Home 2022 (DSPL).
+Our first experience competing with Toyota's Human Support Robot (HSR) was at the World Robot Summit (WRS) 2018, where we competed in the Partner Robot Challenge. We have since competed at RoboCup 2019 in the DSPL @Home league. Due to the coronavirus pandemic, we were unfortunately unable to compete in the 2020 and 2021 competitions. However, \textit{\teamori} will return to the competition in 2022 with a refreshed and revamped team.
+Our research interests are centred around long-term autonomy; mobility and whole body motion planning; causal reasoning and knowledge representation; and trustworthy and explainable AI.
+Advances in these directions will enable service robots to interact with humans and complete useful everyday tasks in typical household settings, as well as other applications including autonomous inspection tasks and autonomous road vehicles. 
+We aim to demonstrate robust and intelligent autonomous behaviour, that uses experience to learn and refine a growing set of robot skills, on the HSR.
 \end{abstract}
 
 
@@ -87,55 +84,47 @@ experience to learn and refine a growing set of robot skills, on the HSR.
 
 \section{Introduction}
 
-\textit{\teamori{}} is a relatively new team created within the Oxford Robotics Institute
-(ORI) at the University of Oxford. The team consists of undergraduate and
-graduate students; robotics researchers; and faculty members of ORI. We come
-from a strong research institute with seminal work in mobile autonomy and
-machine learning. The ORI has a significant track record in \emph{field robotics}
-and real-world trials of autonomous systems. It also has a team of professional
-hardware and software engineers. This experience and support is leveraged
-to create a robotics competition team capable of delivering across the whole
-competition. 
+\textit{\teamori{}} is a student robotics competition team created in 2018 within the Oxford Robotics Institute (ORI) at the University of Oxford. 
+The team consists of undergraduate and graduate students, and is supported by robotics postdoc researchers, principal investigators, and other faculty members of the ORI. 
+We come from a strong research institute with seminal work in mobile autonomy and machine learning. The ORI has a significant track record in \emph{field robotics} and real-world trials of autonomous systems.
+Further, the ORI also has a team of professional hardware and software engineers. This experience and support is leveraged to create a robotics competition team with a solid foundation to deliver a strong performance in the RoboCup competition.
 
-The RoboCup@Home league provides a challenging environment and complex tasks to
-which existing ORI research can be applied. 
-We successfully applied for a Toyota Human Support Robot (HSR) in 2018
-and received the robot in late July. Despite the short amount of time we
-had with the HSR, we succeeded in competing in the Partner Robot Challenge of WRS in the October (see Figure~\ref{fig:wrs}). We since competed in the 2019 RoboCup@Home competition, placing $6^{th}$ out of 10 on our first attempt at the competition. 
+\subsection{Past Competition Involvements}
+The RoboCup@Home league provides a challenging environment and complex tasks to which new and existing ORI research can be applied. 
+Since acquiring our Toyota Human Support Robot (HSR) in 2018, we have competed in the Partner Robot Challenge of WRS; we also competed in the 2019 RoboCup@Home competition, placing $6^{th}$ out of 10 on our first attempt at the competition (see Figure~\ref{fig:pastcompetitions}). 
 The HSR robot allows us to focus on developing the
 intelligence required for successfully completing complex tasks, 
 without the added burden of building and maintaining a custom platform. 
-Competing in the RoboCup 2020 event will allow us to demonstrate 
-the capabilities presented in this document and will provide valuable experience
-for our future participations.
+Competing in the \robocuptitleshort\ event will allow us to demonstrate the capabilities presented in this document and will provide valuable experience for our future participations.
 
+\subsection{Public Outreach}
+Our team also run robot demonstrations to the public at outreach events, such as the Goodwood Festival of Speed, University open days, and the Oxford Science and Ideas Festival, to promote greater awareness and interest in STEM, robotics, and AI to the wider public. In October 2019, we demonstrated the HSR for His Royal Highness Prince William at the ORI to celebrate the opening of a new college building \cite{PrinceWilliamArticle} (see Figure~\ref{fig:outreach}).
 
 \begin{figure}[tb]
-  \begin{center}
-    \includegraphics[width=.32\columnwidth, clip, trim=0 0ex 0ex 50ex]{images/team_orion.jpg}
-    \includegraphics[width=.32\columnwidth, clip, trim=0 0ex 0ex 50ex]{images/bring_me.jpg}
-    \includegraphics[width=.32\columnwidth, clip, trim=0 0ex 0ex 50ex]{images/hsr_grasping.jpg}
-  \end{center} 
-  \caption{\emph{Left:} Team ORIon at the World Robot Summit (WRS) 2018 in Tokyo, Japan. \emph{Middle:}~Setup for the ``Bring me'' task. \emph{Right:} HSR grasping a plant.}
-  \label{fig:wrs}
+	\begin{center}
+  		\includegraphics[width=.41\columnwidth, clip, trim=0 0ex 0ex 50ex]{images/hsr_grasping.jpg}
+  		\includegraphics[width=.49\columnwidth, clip, trim=0 0ex 0ex 50ex]{images/robocup_team.jpg}
+	\end{center} 
+	\caption{\emph{Left:} Team ORIon's HSR grasping a plant at the World Robot Summit (WRS) 2018 in Tokyo, Japan. \emph{Right:} Team ORIon at RoboCup@Home (WRS) 2019 in Sydney, Australia.}
+	\label{fig:pastcompetitions}
 \end{figure}
 
 \begin{figure}[tb]
-  \begin{center}
-    \includegraphics[width=.48\columnwidth, clip, trim=0 0ex 0ex 50ex]{images/robocup_team.jpg}
-    \includegraphics[width=.45\columnwidth, clip, trim=0 0ex 0ex 50ex]{images/robocup_team_working.jpg}
-  \end{center} 
-  \caption{\emph{Left:} Team ORIon at RoboCup@Home (WRS) 2019 in Sydney, Australia. \emph{Right:} The team hard at work developing for a specific task.}
-  \label{fig:robocup}
+	\begin{center}
+		\includegraphics[width=.20\columnwidth, clip, trim=0 0ex 0ex 0ex]{images/goodwood_hsr_coffee.jpg}
+		\includegraphics[width=.39\columnwidth, clip, trim=20ex 0ex 0ex 0ex]{images/goodwood_demo_with_child.jpg}
+		\includegraphics[width=.214\columnwidth, clip, trim=0ex 0ex 0ex 15ex]{images/keble_college_duke_of_cambridge_hb_allen_centre.jpg}
+	\end{center} 
+	\caption{\emph{Left, Middle:} Team ORIon demonstrating the HSR to the public at the 2021 Goodwood Festival of Speed. \emph{Right:} Demonstrating the HSR for HRH Prince William.}
+	\label{fig:outreach}
 \end{figure}
 
 
 \section{Team Composition}
+The team is led by ORI PhD student Ricardo Cannizzaro, and is composed into five sub-teams to manage different robot sub-systems: task-level planning, perception, manipulation, human-robot interaction, and semantic mapping. The core team for 2022 will be Oxford University PhD student sub-team leaders (Clarissa Costen, Matthew Budd, Shu Ishida, Marc Rigter), as well as PhD and undergraduate team members. The sub-team responsibilities and team members are described further in \cite{OrionWebpageMeetTheTeam}.
+Since the start of the academic calendar in September (and following a substantial period of reduced activity due to the coronavirus pandemic), the team has made a large effort to recruit and train new team members, and review and consolidate existing robot functionality to prepare for the \robocuptitleshort\ competition. 
 
-The team is led by Prof. Nick Hawes, who has extensive background in
-intelligent autonomous robots that can work with or for humans, Dr. Ioannis Havoutis, an expert in combining motion planning with machine learning, and Dr. Lars Kunze, who has a strong research focus on scene understanding and semantic mapping. The core of the team for 2020 will be ORI's post-doctoral researchers (Bruno Lacerda), PhD students (Charlie Street, Mark Finean, Shu Ishida, Marc Rigter, Michael Painter), as well as udergraduates members (Mia Mijovic, Matthew Budd). More team members will be brought in as the team develops. 
-
-
+The team is supported by ORI principal investigators Dr. Lars Kunze, who has a strong research focus on scene understanding and semantic mapping, causal reasoning, and explainable and trustworthy AI; Prof. Nick Hawes, who has extensive background in intelligent autonomous robots that can work with or for humans in uncertain environments; and Dr. Ioannis Havoutis, an expert in combining motion planning with machine learning.
 
 \section{Capabilities and Goals}
 
