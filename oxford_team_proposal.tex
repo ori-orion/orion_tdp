@@ -266,14 +266,10 @@ The continued maintenance and development of the SCS will provide a well-tested 
 \section{Current Software Stack For Domestic Tasks}\label{sec:current-software-stack-for-domestic-tasks}
 \textbf{Topological navigation (Ricardo and Charlie to Review)} - The topological navigation system from the STRANDS project was integrated into the HSR as the main navigation system. The system allows for the placement of predefined nodes in our map and for the creation of edges between any of the nodes. The system also allows for the specification of actions on each edges and nodes, allowing the user to define any number of actions to take upon reaching a node, or whilst navigating to a node; this allows us to use the move\_base configurations specified by Toyota, or to define our own navigation with optimized parameters. 
 
-\textbf{Human-Robot Interaction via Speech (Shu to review)} - For interacting with the robot using Natural Language (via speech commands) we have integrated Julius, an open-source large vocabulary continuous speech recognition engine\footnote{\url{https://github.com/julius-speech/julius}}. To this end, we have defined a simple grammar that allows an operator to communicate with the robot in predefined dialogues. This allows an operator to issue commands (``tidy up, bring me \emph{something}'', ``move to \emph{location}'') and/or confirm requests made by the robots (\emph{``Please open the door and confirm when you are done''}).
-
-\textbf{TODO - include a brief description of the following}
-\begin{itemize}
-	\item Offline speech recognition: PocketSphinx and Wavenet
-	\item Levenstein distance with candidate texts
-	\item Semantic robustness to the speech classification by using WordNet (identifying synonymous words during the classification step)
-\end{itemize}
+\textbf{Human-Robot Interaction via Speech} - For interacting with the robot using Natural Language, we have developed a subsystem that performs classification of speech commands. 
+This system interfaces with Google Speech-to-Text\footnote{\url{https://cloud.google.com/speech-to-text/}} as well as locally executable methods such as PocketSphinx\footnote{\url{https://github.com/cmusphinx/pocketsphinx}} and a pre-trained WaveNet\footnote{\url{https://github.com/buriburisuri/speech-to-text-wavenet}}~\cite{oord2016wavenet} as fallback options when Internet connection is not available. 
+For classifying speech commands, we measure the Levenstein distance with candidate texts, with added semantic robustness by looking up sysnonymous words in WordNet~\cite{miller1995wordnet}. 
+This allows an operator to communicate with the robot in predefined dialogues. This allows an operator to issue commands (``tidy up, bring me \emph{something}'', ``move to \emph{location}'') and/or confirm requests made by the robots (\emph{``Please open the door and confirm when you are done''}).
 
 \textbf{Object detection (Clarissa to review)} - For object detection in 2D we use a trained deep neural network, \textit{YOLO}. We decided to start with YOLO because of the simplicity of the framework and fast detection speeds with deep models reported in the literature. Image coordinates of detected objects are transformed into 3D  and into object markers, using simple processing and ROS' \textit{tf}.  
 
