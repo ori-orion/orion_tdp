@@ -303,11 +303,22 @@ Given this target, the manipulation system segments the object's point cloud out
 This module returns a ranked list of feasible candidate poses for the end effector to approach from.
 %
 The system then moves to the highest-ranked end effector pose to attempt to grasp the object, while avoiding collision.
+%
+An overview of the grasp generation and execution process can be seen in Figure~\ref{fig:manipulation_data_flow}.
 
 The HSR's next steps will depend on what it was aiming to do with the grasped object.
 %
 The manipulation system is capable of using door and drawer handles as well as object pick\&place operations.
 
+
+\begin{figure*}[!t]
+	\centering
+	\subfigure{\resizebox{\textwidth}{!}{\includegraphics{images/manipulation_data_flow.pdf}}}
+	\vspace{-10pt}%
+	\caption{Simplified data flow diagram for manipulation grasp synthesis and execution.}
+	\label{fig:manipulation_data_flow}
+	\vspace{-3ex}
+\end{figure*}
 
 
 \section{Conclusion}
