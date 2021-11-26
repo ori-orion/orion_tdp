@@ -156,27 +156,42 @@ Because key members of the EU STRANDS Project\footnote{\url{http://strands-proje
 
 Since then, we have expanded our robot's capabilities by leveraging open-source software to create new sub-system functionality and combine them to produce new autonomous behaviours to perform service tasks in typical domestic environments.
 
-\subsection{Manipulation (Matt Budd to review)}
+\subsection{Manipulation}
 
-In the context of manipulation, the robot will require a number of key skills 
-to successfully perform a wide
-variety of tasks that involve interaction with the environment or other
-agents (Figure \ref{fig:baxter_water_task}), eg. pushing buttons, tuning handles, grasping and passing objects, etc. 
-% 
-The robots used in the STRANDS Project did not have manipulation capabilities, therefore the SCS does not provide software to support this. To deliver these capabilities we have started from \teamori{} member Lars Kunze's previous experience of knowledge-enabled manipulation~\cite{kunze15aij}. This previous work resulted in a system which could grasp an egg (\url{https://www.youtube.com/watch?v=jLz87H4q3hU}) and make a pancake (\url{https://www.youtube.com/watch?v=YQs5gRei8k4}). 
+The wide variety of manipulation tasks in RoboCup means that we must deliver a robust manipulation system.
 %
-%Predicting and manually 
-%designing in advance such a skill-set is only feasible for robots that perform 
-%a narrow set of specific functions. 
-To augment this we aim to build in our framework the ability
-to learn and refine new skills as tasks change or as new tasks need to be added
-the task repertoire. Such capability will be based on \teamori{} 
-member Ioannis Havoutis' background in learning, synthesis and control of 
-complex motions \cite{Havoutis16SSRR}. Skill representations
-are learnt from demonstrations---allowing also the use by non-experts---using a probabilistic generative encoding %, combining Gaussian 
-%Mixture Models (GMMs) and Hidden semi-Markov Models (HSMMs)
-\cite{Havoutis17ICRA}. Motion generation is formulated as an optimal
-control problem that adapts to changing task configurations on-line \cite{Zeestraten17IROS,Zeestraten2017-RAL} (\url{https://youtu.be/NiRPE0egymk}).
+As the STRANDS project robots did not have manipulation capabilities, \teamori{}  members (in particular Mark Finean) have designed the manipulation system from the ground up.
+% Are we explicitly referring to team member contributions elsewhere? Best to standardise.
+Manipulation actions to be carried out are specified by the task-level planner, which receives feedback on their success or failure.
+%
+Manipulation actions include picking up, carrying, placing and pouring of carryable objects, and opening and closing of doors and drawers.
+%
+All of these require reliable grasping of objects in novel poses and configurations, sometimes in the presence of clutter or obstacles.
+%
+The manipulation stack therefore incorporates grasp synthesis directly on target object point clouds, including efficient point cloud filtering and segmentation.
+%
+We use GPD \cite{GPD1,GPD2} for grasp pose synthesis, giving us the 6-dimensional pose of approach for the highest quality grasp generated.
+
+The grasp synthesis pipeline is less reliable for small and flat objects such as cutlery.
+%
+This is partly due to the grasp itself being very different, but in particular due to the difficulty of extracting a representative point cloud of these objects.
+%
+For these objects we implement a custom visual feedback system, using the in-hand camera to align and orient the end effector to ensure a successful grasp.
+%
+Finally, object-dependent selection between the gripper or the vaccuum pad means that the manipulation system makes full use of the HSR's manipulation hardware.
+
+We plan to increase task performance by leveraging team members' experience.
+%
+Increasing integration between task-level planning, perception and manipulation components should enable more intelligent manipulation behaviour depending on the object being manipulated.
+%
+Integrating more online learning based on feedback would enable improvement over time and increase how quickly we can adapt to new tasks.
+%
+\teamori{} member Lars Kunze's previous work includes knowledge-enabled manipulation~\cite{kunze15aij}, demonstrated in a system which could grasp an egg (\url{https://www.youtube.com/watch?v=jLz87H4q3hU}) and make a pancake (\url{https://www.youtube.com/watch?v=YQs5gRei8k4}). 
+%
+Further, \teamori{} member Ioannis Havoutis has an extensive background in learning, synthesis and control of complex motions.
+%
+This includes learning of skill representations from demonstrations \cite{Havoutis16SSRR,Havoutis17ICRA}, and motion generation with adaptation to changing task configurations on-line \cite{Zeestraten17IROS,Zeestraten2017-RAL}, as shown in  Figure~\ref{fig:baxter_water_task} and (\url{https://youtu.be/NiRPE0egymk}).
+
 \begin{figure*}[!t]
 	\centering
 	\subfigure{\resizebox{\textwidth}{!}{\includegraphics{images/baxter_learning_riemannian.png}}}
@@ -189,8 +204,8 @@ control problem that adapts to changing task configurations on-line \cite{Zeestr
 	\vspace{-3ex}
 \end{figure*}
 
-Team ORIon member, Mark Finean, has since adapted the manipulation stack to incorporate grasp synthesis directly on the object point clouds. The object recognition system firstly identifies the pose of the object that we desire the robot to interact with. This is then used for segmenting the point cloud of the object to feed to our grasp synthesis implementation of GPD \cite{GPD1} \cite{GPD2}. Grasp synthesis then outputs the 6-dimensional pose of approach for the highest ranked grasp.
-Manipulation approaches described as above are less reliable for small objects such as cutlery; this is primarily because the grasp itself is very different but also because it is difficult to extract a representative point cloud of these small objects. Instead we implement a custom visual feedback system that uses the in-hand camera to align and orient the end effector to ensure a successful grasp.  
+
+
 
 \subsection{Navigation (Ricardo and Charlie to review)}
 
@@ -277,7 +292,23 @@ The continued maintenance and development of the SCS will provide a well-tested 
 
 \textbf{Object detection (Clarissa to review)} - For object detection in 2D we use a trained deep neural network, \textit{YOLO}. We decided to start with YOLO because of the simplicity of the framework and fast detection speeds with deep models reported in the literature. Image coordinates of detected objects are transformed into 3D  and into object markers, using simple processing and ROS' \textit{tf}.  
 
-\textbf{Manipulation and grasping (Matt Budd to review)} - In our current software stack, grasping is realised via the ROS motion planning framework \textit{MoveIt}\footnote{\url{https://moveit.ros.org}}. A target frame is provided by our object detection system to give the 3D pose location of the object to grasp. This location is then used to indicate which object point cloud we wish to segment and feed to the grasp synthesis module. The grasp synthesis module ranks grasp poses and returns the best candidate poses for the end-effector to approach from for MoveIt to perform the motion planning and grasping. 
+\textbf{Manipulation and grasping} - In our current software stack, motion control for the HSR arm and gripper is via the Toyota joint motion control interface.
+%
+We use point clouds from the Xtion RGBD camera for online collision mapping (with \textit{OctoMap} occupancy estimation), detection of horizontal (e.g. table top) and vertical (e.g. door) surfaces, and detection of handles for drawers and doors.
+
+For interacting with manipulable objects, the target object's 3D pose is first provided by our object detection system. 
+%
+Given this target, the manipulation system segments the object's point cloud out of the point cloud input and feeds it into the grasp synthesis module.
+%
+This module returns a ranked list of feasible candidate poses for the end effector to approach from.
+%
+The system then moves to the highest-ranked end effector pose to attempt to grasp the object, while avoiding collision.
+
+The HSR's next steps will depend on what it was aiming to do with the grasped object.
+%
+The manipulation system is capable of using door and drawer handles as well as object pick\&place operations.
+
+
 
 \section{Conclusion}
 \textit{\teamori{}} aims to return to the standard platform league again in \competitionyear, following a brief absence due to the pandemic. The team will build on the strong research background of its members, including the ORI's extensive real-world robot operating experience, and extend the HSR's capabilities as presented. This will permit the HSR to perform more complex autonomous behaviours in a more robust manner in a range of service tasks, similar to the RoboCup@Home \competitionyear\ tasks. 
