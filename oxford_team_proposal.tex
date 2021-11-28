@@ -200,7 +200,7 @@ the Partner Robot Challenge arena at WRS 2018 and RoboCup 2019, where our HSR ne
 different parts of the environment and stop before a closed
 door is opened.
 
-\subsection{Perception}
+\subsection{Perception}\label{sec:capability-perception}
 Perception allows the robot to use the visual and depth input from its RGB-D cameras to determine the identity and location of objects in the surroundings. \teamori{} have implemented a Faster R-CNN model with a ResNet-50-FPN backbone \cite{}, %TODO
 which have been pre-trained on the COCO datasets. The current image from the camera is input into the model, which outputs a bounding box for an object, the object's identity, and the confidence level. We then process the output by applying non-maximum suppression to the set of outputs to remove duplicate detections, then apply a minimum confidence threshold.
 
@@ -268,7 +268,7 @@ This system interfaces with the cloud-based Google Speech-to-Text\footnote{\url{
 For classifying speech commands, we measure the Levenstein distance with candidate texts, with added semantic robustness by looking up synonymous words in WordNet~\cite{miller1995wordnet}. 
 This allows an operator to communicate with the robot in predefined dialogues, and thus issue commands (``tidy up, bring me \emph{something}'', ``move to \emph{location}'') and/or respond to requests made by the robot (e.g., ``Please confirm when you are ready to receive the object'').
 
-\textbf{Object detection} - For object detection in 2D we use a trained deep neural network, \textit{YOLO}. We decided to start with YOLO because of the simplicity of the framework and fast detection speeds with deep models reported in the literature. Image coordinates of detected objects are transformed into 3D  and into object markers, using simple processing and ROS' \textit{tf}.  
+\textbf{Object detection} - For object detection and pose estimation we use a Faster R-CNN model with a ResNet-50-FPN backbone (see \ref{sec:capability-perception} \nameref{sec:capability-perception}). Image coordinates of detected objects are transformed into 3D  and into object markers, using simple processing and ROS' \textit{tf}.  
 
 \textbf{Manipulation and grasping (Matt Budd to review)} - In our current software stack, grasping is realised via the ROS motion planning framework \textit{MoveIt}\footnote{\url{https://moveit.ros.org}}. A target frame is provided by our object detection system to give the 3D pose location of the object to grasp. This location is then used to indicate which object point cloud we wish to segment and feed to the grasp synthesis module. The grasp synthesis module ranks grasp poses and returns the best candidate poses for the end-effector to approach from for MoveIt to perform the motion planning and grasping. 
 
