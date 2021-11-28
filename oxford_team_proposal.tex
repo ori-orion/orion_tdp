@@ -125,7 +125,7 @@ Since the start of the academic calendar in September (and following a substanti
 
 The team is supported by ORI principal investigators Dr. Lars Kunze, who has a strong research focus on scene understanding and semantic mapping, causal reasoning, and explainable and trustworthy AI; Prof. Nick Hawes, who has extensive background in intelligent autonomous robots that can work with or for humans in uncertain environments; and Dr. Ioannis Havoutis, an expert in combining motion planning with machine learning.
 
-\section{Research, Capabilities and Goals}
+\section{Capabilities, Goals \& Research}
 
 % TODO - replace with more relevant figure showing original research or novel functionality
 \begin{figure}[tb]
@@ -203,18 +203,10 @@ This includes learning of skill representations from demonstrations \cite{Havout
 \end{figure*}
 
 
+\subsection{Navigation}\label{sec:capability-navigation}
+Navigation is currently managed by the task-level planning subsystem, which implements a hierarchical SMACH state machine\footnote{http://wiki.ros.org/smach} to define sequences of states and actions that are combined to compose different tasks (e.g., navigate to a given position, turn to look at an object, retrieve an item, ask a human operator a question and listen for a response). Navigation actions are controlled via the \emph{move\_base} ROS Action server provided by the \emph{tmc\_move\_base} ROS package.
 
-
-\subsection{Navigation (Ricardo and Charlie to review)}
-
-To enable robust navigation in all settings we take a hierarchical approach to navigation. The hierarchy is structured around a topological map in which discrete locations are connected by directed edges~\cite{jpulido2015NowOrLater}. Edges correspond to navigation actions the robot can perform to transition between locations. These may be standard \texttt{move\_base} actions, social navigation, closed loop controllers (such as wall following or door passing), or teach-and-repeat paths. Choices between the actions are made by a Markov decision process-based planner which jointly optimises for success probability and completion time, using probabilistic models learnt online through experience~\cite{lacerda_ijrr19}. To ensure the robot does not get stuck we employ a monitored navigation layer which monitors the execution of the low level edge actions and performs recovery behaviours (e.g. backtracking, HRI) to correct observed problems~\cite{strands@ram}. This collection of techniques drove the STRANDS robots for over 360km of autonomous navigation in human-populated environments. For \teamori{} we will extend the framework to enable integration of ORI's visual teach-and-repeat paradigm, to enable the robot to navigate in areas where laser-based localisation is likely to result in imprecise navigation. We will also look to integrate some of ORI's previous 3D mapping work (e.g.~\cite{AmayoICRA2016}) to increase the accuracy of the robot's environment representation.
-
-We have already integrated most parts of the hierarchical topological navigation
-to our software stack. We have used this to robustly navigate the arena of
-the Partner Robot Challenge arena at WRS 2018 and RoboCup 2019, where our HSR needed to reach
-different parts of the environment and stop before a closed
-door is opened.
-
+Previously, we used a hierarchical navigation system from the STRANDS project. The navigation system was structured around a topological map, in which discrete locations were connected by directed edges~\cite{jpulido2015NowOrLater}. Edges corresponded to navigation actions the robot could perform to transition between locations. These may be standard \texttt{move\_base} actions, social navigation, closed loop controllers (such as wall following or door passing), or teach-and-repeat paths. This system has since been replaced, however, we will explore incorporating elements of topological navigation into the current navigation system to permit location-based action-selection, such as checking if a door is open, checking if a human is present for greeting, and following a human from a given start location.
 
 \subsection{Perception}\label{sec:capability-perception}
 Perception allows the robot to use the visual and depth input from its RGB-D cameras to determine the identity and location of objects in the surroundings. \teamori{} have implemented a Faster R-CNN model with a ResNet-50-FPN backbone \cite{ren2016faster}, which have been pre-trained on the COCO datasets. The current image from the camera is input into the model, which outputs a bounding box for an object, the object's identity, and the confidence level. We then process the output by applying non-maximum suppression to the set of outputs to remove duplicate detections, then apply a minimum confidence threshold.
@@ -274,7 +266,7 @@ TODO - review and clean up this section
 The continued maintenance and development of the SCS will provide a well-tested software framework for mobile service robots. Continuing the practice started by the STRANDS Project, we will make extensions to the SCS available as open source software. This will enable our core framework to be reusable by other groups. The validity of this approach has already been demonstrated by the reuse of the SCS at labs including the Intelligent Robots and Systems group at the Institute for Systems and Robotics, Lisbon, and at Honda Research Institute Europe. The aforementioned use of the majority of our technology within systems which have already been successfully demonstrated in real challenging service robot environments shows that our approach is applicable in the real world.
 
 \section{Current Software Stack For Domestic Tasks}\label{sec:current-software-stack-for-domestic-tasks}
-\textbf{Topological navigation (Ricardo and Charlie to Review)} - The topological navigation system from the STRANDS project was integrated into the HSR as the main navigation system. The system allows for the placement of predefined nodes in our map and for the creation of edges between any of the nodes. The system also allows for the specification of actions on each edges and nodes, allowing the user to define any number of actions to take upon reaching a node, or whilst navigating to a node; this allows us to use the move\_base configurations specified by Toyota, or to define our own navigation with optimized parameters. 
+\textbf{Task-Level Planning} - The task-level planning sub-system acts as the executive controller of the robot system. Autonomous behaviours are defined through the use of hierarchical SMACH state machines, which combine abilities provided by other sub-systems, accessible via ROS Action servers. This composition of sub-system abilities permits the HSR to perform useful tasks in a domestic environment (e.g., fetching a bottle of water for a human, storing an object on a shelf, asking a human what it can do to help). The task-level planning sub-system interacts directly with the \emph{`tmc\_move\_base'} ROS package for navigation (see \nameref{sec:capability-navigation} \ref{sec:capability-navigation}).
 
 \textbf{Human-Robot Interaction via Speech} - For interacting with the robot using natural language, we have developed a subsystem that performs classification of speech commands. 
 This system interfaces with the cloud-based Google Speech-to-Text\footnote{\url{https://cloud.google.com/speech-to-text/}} as well as locally executable methods such as PocketSphinx\footnote{\url{https://github.com/cmusphinx/pocketsphinx}} and a pre-trained WaveNet\footnote{\url{https://github.com/buriburisuri/speech-to-text-wavenet}}~\cite{oord2016wavenet} as fallback options when an internet connection is not available. 
