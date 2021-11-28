@@ -201,12 +201,10 @@ different parts of the environment and stop before a closed
 door is opened.
 
 \subsection{Perception (Clarissa to review)}
+Perception allows the robot to use the visual and depth input from the RGBD cameras to determine the identity and location of objects in the surroundings. \teamori{} have implemented a Faster R-CNN model with a ResNet-50-FPN backbone \cite{}, which have been pre-trained on the COCO datasets. The current image from the camera is fed into the model, which outputs a bounding box for an object, the object's identity and the confidence level. We then process the output by applying non-maximum suppression to the set of outputs to remove duplicate detections, then apply a minimum confidence threshold. 
 
-TODO - briefly describe plans for
-\begin{itemize}
-	\item (Visual) Human detector/recognition system
-\end{itemize}
-Note: the existing perception pipeline is covered in the \nameref{sec:current-software-stack-for-domestic-tasks} section.
+Our future works focuses on  two areas, the first being improving the object detection by fine tuning the model to focus on domestic objects. This will be done by training the model further with datasets comprised of household objects. The second area of focus is creating a separate human detection model. Currently, the object detector is able to detect a human with a high relability. However, we would like to develop this further, such that the human detector can identify unique traits of people, and thus allow for future work in searching for specific people. 
+
 
 \subsection{Semantic Mapping (Ricardo and Matthew Munks to review)}
 
