@@ -159,7 +159,7 @@ Since then, we have expanded our robot's capabilities by leveraging open-source 
 In the context of manipulation, the robot will require a number of key skills 
 to successfully perform a wide
 variety of tasks that involve interaction with the environment or other
-agents (Figure \ref{fig:baxter_water_task}), eg. pushing buttons, tuning handles, grasping and passing objects, etc. 
+agents (Figure \ref{fig:baxter_water_task}), e.g., pushing buttons, tuning handles, grasping and passing objects, etc.. 
 % 
 The robots used in the STRANDS Project did not have manipulation capabilities, therefore the SCS does not provide software to support this. To deliver these capabilities we have started from \teamori{} member Lars Kunze's previous experience of knowledge-enabled manipulation~\cite{kunze15aij}. This previous work resulted in a system which could grasp an egg (\url{https://www.youtube.com/watch?v=jLz87H4q3hU}) and make a pancake (\url{https://www.youtube.com/watch?v=YQs5gRei8k4}). 
 %
@@ -200,10 +200,11 @@ the Partner Robot Challenge arena at WRS 2018 and RoboCup 2019, where our HSR ne
 different parts of the environment and stop before a closed
 door is opened.
 
-\subsection{Perception (Clarissa to review)}
-Perception allows the robot to use the visual and depth input from the RGBD cameras to determine the identity and location of objects in the surroundings. \teamori{} have implemented a Faster R-CNN model with a ResNet-50-FPN backbone \cite{}, which have been pre-trained on the COCO datasets. The current image from the camera is fed into the model, which outputs a bounding box for an object, the object's identity and the confidence level. We then process the output by applying non-maximum suppression to the set of outputs to remove duplicate detections, then apply a minimum confidence threshold. 
+\subsection{Perception}
+Perception allows the robot to use the visual and depth input from its RGB-D cameras to determine the identity and location of objects in the surroundings. \teamori{} have implemented a Faster R-CNN model with a ResNet-50-FPN backbone \cite{}, %TODO
+which have been pre-trained on the COCO datasets. The current image from the camera is input into the model, which outputs a bounding box for an object, the object's identity, and the confidence level. We then process the output by applying non-maximum suppression to the set of outputs to remove duplicate detections, then apply a minimum confidence threshold.
 
-Our future works focuses on  two areas, the first being improving the object detection by fine tuning the model to focus on domestic objects. This will be done by training the model further with datasets comprised of household objects. The second area of focus is creating a separate human detection model. Currently, the object detector is able to detect a human with a high relability. However, we would like to develop this further, such that the human detector can identify unique traits of people, and thus allow for future work in searching for specific people. 
+Our future work focuses on two areas, the first being improving the object detection by fine tuning the model to more accurately detect domestic objects, which are encountered more frequently in the household environment than other types of objects. This will be done by training the model further with datasets comprised of household objects. The second area of focus is creating a separate human detection model. Currently, the object detector is able to detect a human with high reliability. However, we would like to develop this further, such that the human detector can identify unique traits of people, and thus allow for future work in searching for specific people.
 
 
 \subsection{Semantic Mapping (Ricardo and Matthew Munks to review)}
@@ -267,7 +268,7 @@ This system interfaces with the cloud-based Google Speech-to-Text\footnote{\url{
 For classifying speech commands, we measure the Levenstein distance with candidate texts, with added semantic robustness by looking up synonymous words in WordNet~\cite{miller1995wordnet}. 
 This allows an operator to communicate with the robot in predefined dialogues, and thus issue commands (``tidy up, bring me \emph{something}'', ``move to \emph{location}'') and/or respond to requests made by the robot (e.g., ``Please confirm when you are ready to receive the object'').
 
-\textbf{Object detection (Clarissa to review)} - For object detection in 2D we use a trained deep neural network, \textit{YOLO}. We decided to start with YOLO because of the simplicity of the framework and fast detection speeds with deep models reported in the literature. Image coordinates of detected objects are transformed into 3D  and into object markers, using simple processing and ROS' \textit{tf}.  
+\textbf{Object detection} - For object detection in 2D we use a trained deep neural network, \textit{YOLO}. We decided to start with YOLO because of the simplicity of the framework and fast detection speeds with deep models reported in the literature. Image coordinates of detected objects are transformed into 3D  and into object markers, using simple processing and ROS' \textit{tf}.  
 
 \textbf{Manipulation and grasping (Matt Budd to review)} - In our current software stack, grasping is realised via the ROS motion planning framework \textit{MoveIt}\footnote{\url{https://moveit.ros.org}}. A target frame is provided by our object detection system to give the 3D pose location of the object to grasp. This location is then used to indicate which object point cloud we wish to segment and feed to the grasp synthesis module. The grasp synthesis module ranks grasp poses and returns the best candidate poses for the end-effector to approach from for MoveIt to perform the motion planning and grasping. 
 
