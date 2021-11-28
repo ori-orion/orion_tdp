@@ -158,11 +158,11 @@ Since then, we have expanded our robot's capabilities by leveraging open-source 
 
 The wide variety of manipulation tasks in RoboCup means that we must deliver a robust manipulation system.
 %
-As the STRANDS project robots did not have manipulation capabilities, \teamori{}  members (in particular Mark Finean) have designed the manipulation system from the ground up.
-% Are we explicitly referring to team member contributions elsewhere? Best to standardise.
+As the STRANDS project robots did not have manipulation capabilities, \teamori{} has designed the manipulation system from the ground up.
+%
 Manipulation actions to be carried out are specified by the task-level planner, which receives feedback on their success or failure.
 %
-Manipulation actions include picking up, carrying, placing and pouring of carryable objects, and opening and closing of doors and drawers.
+Manipulation actions include picking up, carrying, placing and pouring of carryable objects, in addition to opening and closing of doors and drawers.
 %
 All of these require reliable grasping of objects in novel poses and configurations, sometimes in the presence of clutter or obstacles.
 %
@@ -172,15 +172,15 @@ We use GPD \cite{GPD1,GPD2} for grasp pose synthesis, giving us the 6-dimensiona
 
 The grasp synthesis pipeline is less reliable for small and flat objects such as cutlery.
 %
-This is partly due to the grasp itself being very different, but in particular due to the difficulty of extracting a representative point cloud of these objects.
+This is due to GPD lacking knowledge of the gripper’s shape and the difficulty of extracting a representative point cloud of these objects -- for example, the object point cloud might include some of the table or have a large gap in the middle of the object.
 %
-For these objects we implement a custom visual feedback system, using the in-hand camera to align and orient the end effector to ensure a successful grasp.
+Further, the optimal grasp for these objects is always from the top. Thus, we implement a custom visual feedback system, using the in-hand camera to align and orient the end effector from above to ensure a successful grasp.
 %
-Finally, object-dependent selection between the gripper or the vaccuum pad means that the manipulation system makes full use of the HSR's manipulation hardware.
+Finally, we perform object-dependent selection between the gripper or the vacuum pad to allow the manipulation system to make full use of the HSR's manipulation hardware.
 
 We plan to increase task performance by leveraging team members' experience.
 %
-Increasing integration between task-level planning, perception and manipulation components should enable more intelligent manipulation behaviour depending on the object being manipulated.
+Increasing integration between task-level planning, perception, and manipulation components should enable more intelligent manipulation behaviour depending on the object being manipulated.
 %
 Integrating more online learning based on feedback would enable improvement over time and increase how quickly we can adapt to new tasks.
 %
@@ -227,14 +227,12 @@ Our future work focuses on two areas, the first being improving the object detec
 Learning and recognising objects during operation is a key task for a mobile service robot in human environments. \teamori{} will exploit the work done in the STRANDS Project in terms of autonomous object learning plus the recognition and modelling of previously unseen objects. The work is based on the \emph{meta-room} approach which builds dense RGB-D reconstructions of regions around locations in the robot's topological map. Objects are found through inspecting or differencing meta-rooms. Surfaces and possible objects found in meta-rooms become either targets for more detailed view planning~\cite{kunze14indirect} (see Figure~\ref{fig:mk}) leading to recognition, or for autonomous object learning~\cite{Faeulhammer:2016}. Our recognition pipeline mixes top-down semantic reasoning with bottom-up appearance-based processing for scene understanding \cite{kunze14topdown}, jointly estimating object locations and categories based on qualitative spatial models \cite{kunze14bootstrapping}. The object learning process can build detailed 3D models entire without supervision~\cite{Faeulhammer:2016}. Previously unknown  objects are processed with a mix of deep vision and semantic web technologies to provide the robot with an initial estimate of their identity~\cite{aloof@icra17}.
 
 \subsection{ORI Original Research}
-% TODO
-TODO - brief descriptions of ORI research
-\begin{itemize}
-	\item Mark Finean - whole-body Motion-planning research
-	\item Matthew Munks - Ethical Black Box Human-Robot Dialogue project
-	\item Ricardo - causal reasoning research
-\end{itemize}
 
+\textbf{Ethical Black Box} - \teamori{} member Matthew Munks is developing an Ethical Black Box (EBB) for the HSR with the goal of increasing explainability and trustworthiness of the autonomous robot system. As proposed in \cite{winfield2017} an EBB is a system, analogous to an aircraft's flight data recorder, that logs the internal states and perceptions of a robot, as well as any errors or warnings that occur while carrying out its actions. The EBB permits an end-user, developer, regulator, or accident investigator to query the behaviour and decisions of the autonomous system and reconstruct a scenario of the robot via simulation. This is particularly useful to generate explanations for unexpected or questionable robot behaviour. To fully test this concept, a human-robot dialogue system is also being developed and integrated into the HSR.
+
+\textbf{Robust Causal Inference} - As part of his PhD research, ORIon team lead Ricardo Cannizzaro is developing probabilistic causal reasoning methods, to permit the HSR to reason about the complex relationships that exist between its environment and itself, including its tasks, capabilities, and components. This will permit the HSR to predict the likely outcomes of its actions before committing to them, as well as infer the likely causes for observed outcomes and the likely states of unobserved variables given observations of visible ones. This causal inference capability may be used to enhance the performance and robustness of each sub-system, for example used as an input into the task-level planning, perception, or manipulation sub-systems.
+
+\textbf{Motion Planning, Scene Reconstruction \& Gaze Control} - As part of his PhD research, former \teamori{} member Mark Finean has developed several whole-body motion planning methods for robots operating in dynamic environments \cite{finean2021predicted,finean2021simultaneous,finean2021i}. These methods are executed in real-time and incorporate predicted obstacle motions to avoid collisions. Mark's recent work includes a practical hybrid mapping and motion planning system to permit simultaneous scene reconstruction and collision avoidance, and a `smart' gaze controller that achieves effective perception of the environment for obstacle avoidance and motion planning in dynamic and unknown environments. In both works, the results were validated on \teamori{}'s HSR. Thus, \teamori{} can leverage these research efforts and extend the HSR's functionality for future competitions.
 
 \section{Robot System Integration and Experimentation}
 %TODO
@@ -285,23 +283,23 @@ This allows an operator to communicate with the robot in predefined dialogues, a
 
 \textbf{Object detection} - For object detection and pose estimation we use a Faster R-CNN model with a ResNet-50-FPN backbone (see \ref{sec:capability-perception} \nameref{sec:capability-perception}). Image coordinates of detected objects are transformed into 3D  and into object markers, using simple processing and ROS' \textit{tf}.  
 
-\textbf{Manipulation and grasping} - In our current software stack, motion control for the HSR arm and gripper is via the Toyota joint motion control interface.
+\textbf{Manipulation and grasping} - In our current software stack, motion control for the HSR arm and gripper is done via the Toyota joint motion control interface.
 %
-We use point clouds from the Xtion RGBD camera for online collision mapping (with \textit{OctoMap} occupancy estimation), detection of horizontal (e.g. table top) and vertical (e.g. door) surfaces, and detection of handles for drawers and doors.
+We use point clouds from the Xtion RGB-D camera for online collision mapping (with \textit{OctoMap} occupancy estimation), detection of horizontal (e.g., table top) and vertical (e.g., door) surfaces, and detection of handles for drawers and doors.
 
-For interacting with manipulable objects, the target object's 3D pose is first provided by our object detection system. 
+For interacting with manipulable objects, the target object's 3D pose is first provided by our object detection system (see \ref{sec:capability-perception} \nameref{sec:capability-perception}). 
 %
 Given this target, the manipulation system segments the object's point cloud out of the point cloud input and feeds it into the grasp synthesis module.
 %
 This module returns a ranked list of feasible candidate poses for the end effector to approach from.
 %
-The system then moves to the highest-ranked end effector pose to attempt to grasp the object, while avoiding collision.
+The system then moves to the highest-ranked end effector pose to attempt to grasp the object, while avoiding collisions.
 %
 An overview of the grasp generation and execution process can be seen in Figure~\ref{fig:manipulation_data_flow}.
 
 The HSR's next steps will depend on what it was aiming to do with the grasped object.
 %
-The manipulation system is capable of using door and drawer handles as well as object pick\&place operations.
+The manipulation system is capable of using door and drawer handles as well as object ``pick\&place'' operations.
 
 
 \begin{figure*}[!t]
