@@ -30,13 +30,15 @@ We use a standard DSPL HSR robot from \textit{Toyota}. No modifications have bee
 	\item Platform: Ubuntu 18.04, ROS Melodic (upgrade to Ubuntu 20.04 / ROS Noetic planned for 2022)
 	\item Task-level planning: SMACH ROS library
 	\item Navigation: \textit{tmc\_move\_base} ROS package
-	\item Semantic mapping: STRANDS Semantic Object Maps (SOMa), MongoDB
+	\item Semantic mapping: \emph{semantic\_mapping}*, \mbox{MongoDB}
 	\item Object recognition and pose estimation: Faster R-CNN model with ResNet-50-FPN backbone
 	\item 3D occupancy mapping: OctoMap\footnote{https://octomap.github.io}
 	\item Arm control and gripper coordination: Toyota HSR Motion Interface
 	\item Grasp pose synthesis: Grasp Pose Detection  (GPD)\footnote{https://github.com/atenpas/gpd}, Grasp Pose Generator (GPG)\footnote{https://github.com/atenpas/gpg}
 	\item Speech recognition: PocketSphinx and Wavenet (offline speech recognition), Levenshtein\footnote{https://github.com/maxbachmann/Levenshtein} (semantic similarity checking), WordNet (synonym checking) 
 \end{itemize}
+
+\noindent Items marked with an asterisk are \teamori{} custom solutions.
 
 \section*{External Devices}
 % Please describe in this section the external devices used by your robot. 

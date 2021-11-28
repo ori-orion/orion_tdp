@@ -62,9 +62,9 @@
 
 \begin{abstract}
 This document outlines the approach \textit{\teamori} will take to the RoboCup@Home 2022 (DSPL).
-Our first experience competing with Toyota's Human Support Robot (HSR) was at the World Robot Summit (WRS) 2018, where we competed in the Partner Robot Challenge. We have since competed at RoboCup 2019 in the DSPL @Home league. Due to the coronavirus pandemic, we were unfortunately unable to compete in the 2020 and 2021 competitions. However, \textit{\teamori} will return to the competition in 2022 with a refreshed and revamped team.
+Our first experience competing with Toyota's Human Support Robot (HSR) was at the World Robot Summit (WRS) 2018. We have since competed at RoboCup 2019 in the DSPL @Home league. Due to the coronavirus pandemic, we were unable to compete in the 2020 and 2021 competitions. However, we aim to return to the competition in 2022 with a refreshed team and revamped HSR.
 Our research interests are centred around long-term autonomy; mobility and whole body motion planning; causal reasoning and knowledge representation; and trustworthy and explainable AI.
-Advances in these directions will enable service robots to interact with humans and complete useful everyday tasks in typical household settings, as well as other applications including autonomous inspection tasks and autonomous road vehicles. 
+Advances in these directions will enable service robots to interact with humans and complete useful everyday tasks in typical household settings, and more broadly in other applications such as autonomous road vehicles. 
 We aim to demonstrate robust and intelligent autonomous behaviour, that uses experience to learn and refine a growing set of robot skills, on the HSR.
 \end{abstract}
 
@@ -85,19 +85,17 @@ We aim to demonstrate robust and intelligent autonomous behaviour, that uses exp
 
 \textit{\teamori{}} is a student robotics competition team created in 2018 within the Oxford Robotics Institute (ORI) at the University of Oxford. 
 The team consists of undergraduate and graduate students, and is supported by robotics postdoc researchers, principal investigators, and other faculty members of the ORI. 
-We come from a strong research institute with seminal work in mobile autonomy and machine learning. The ORI has a significant track record in \emph{field robotics} and real-world trials of autonomous systems.
-Further, the ORI also has a team of professional hardware and software engineers. This experience and support is leveraged to create a robotics competition team with a solid foundation to deliver a strong performance in the RoboCup competition.
+We come from a strong research institute with seminal work in mobile autonomy and machine learning. The ORI has a significant track record in field robotics and real-world trials of autonomous systems.
+Further, the ORI also has a team of professional hardware and software engineers. This experience and support is leveraged to deliver a strong performance in the RoboCup competition.
 
 \subsection{Past Competition Involvements}
-The RoboCup@Home league provides a challenging environment and complex tasks to which new and existing ORI research can be applied. 
+The RoboCup@Home league provides a challenging environment and complex tasks to which new and existing ORI research can be applied.
 Since acquiring our Toyota Human Support Robot (HSR) in 2018, we have competed in the Partner Robot Challenge of WRS; we also competed in the 2019 RoboCup@Home competition, placing $6^{th}$ out of 10 on our first attempt at the competition (see Figure~\ref{fig:pastcompetitions}). 
-The HSR robot allows us to focus on developing the
-intelligence required for successfully completing complex tasks, 
-without the added burden of building and maintaining a custom platform. 
+The HSR robot allows us to focus on developing the intelligence required for successfully completing complex tasks, without the added burden of building and maintaining a custom platform.
 Competing in the \robocuptitleshort\ event will allow us to demonstrate the capabilities presented in this document and will provide valuable experience for our future participations.
 
 \subsection{Public Outreach}
-Our team also run robot demonstrations to the public at outreach events, such as the Goodwood Festival of Speed, University open days, and the Oxford Science and Ideas Festival, to promote greater awareness and interest in STEM, robotics, and AI to the wider public. In October 2019, we demonstrated the HSR for His Royal Highness Prince William at the ORI to celebrate the opening of a new college building \cite{PrinceWilliamArticle} (see Figure~\ref{fig:outreach}).
+Our team also runs robot demonstrations to the public at outreach events (e.g., the Goodwood Festival of Speed), to promote greater awareness and interest in STEM, robotics, and AI to the wider public. In October 2019, we demonstrated the HSR for His Royal Highness Prince William at the ORI to celebrate the opening of a new college building \cite{PrinceWilliamArticle} (see Figure~\ref{fig:outreach}).
 
 \begin{figure}[tb]
 	\begin{center}
@@ -120,37 +118,14 @@ Our team also run robot demonstrations to the public at outreach events, such as
 
 
 \section{Team Composition}
-The team is led by ORI PhD student Ricardo Cannizzaro, and is composed into five sub-teams to manage different robot sub-systems: task-level planning, perception, manipulation, human-robot interaction, and semantic mapping. The core team for 2022 will be Oxford University PhD student sub-team leaders (Clarissa Costen, Matthew Budd, Shu Ishida, Marc Rigter), as well as PhD and undergraduate team members. The sub-team responsibilities and team members are described further on the \teamori website\footnote{\url{https://ori.ox.ac.uk/student-teams/team-orion/meet-the-team}}.
+The team is led by ORI PhD student Ricardo Cannizzaro, and is composed into five sub-teams to manage different robot sub-systems: task-level planning, perception, manipulation, human-robot interaction, and semantic mapping. The core team for 2022 will be Oxford University PhD student sub-team leaders Clarissa Costen, Matthew Budd, Shu Ishida, and Marc Rigter. They will be supported by other PhD and undergraduate team members. The sub-team responsibilities and team members are described further on the \teamori website\footnote{\url{https://ori.ox.ac.uk/student-teams/team-orion/meet-the-team}}.
 Since the start of the academic calendar in September (and following a substantial period of reduced activity due to the coronavirus pandemic), the team has made a large effort to recruit and train new team members, and review and consolidate existing robot functionality to prepare for the \robocuptitleshort\ competition. 
 
 The team is supported by ORI principal investigators Dr. Lars Kunze, who has a strong research focus on scene understanding and semantic mapping, causal reasoning, and explainable and trustworthy AI; Prof. Nick Hawes, who has extensive background in intelligent autonomous robots that can work with or for humans in uncertain environments; and Dr. Ioannis Havoutis, an expert in combining motion planning with machine learning.
 
 \section{Capabilities, Goals \& Research}
 
-% TODO - replace with more relevant figure showing original research or novel functionality
-\begin{figure}[tb]
-  \begin{center}
-    \includegraphics[width=.43\columnwidth]{images/betty.jpg}
-    \includegraphics[width=.55\columnwidth,clip,trim=10ex 20ex 10ex 20ex]{images/viewplanning_at_tsc.png}
-  \end{center} 
-  \vspace{-10pt}  
-  \caption{\textit{Left}: The STRANDS autonomous mobile robot in a real-world
-  office environment. \textit{Right}: View planning for object detection in the
-  office environment.}
-  \label{fig:mk}
-  \vspace{-3ex}
-\end{figure}
-
-%TODO - Cover the following
-% - Relative goemetric relationships (semantic mapping)
-% - Semantic search
-
-Because key members of the EU STRANDS Project\footnote{\url{http://strands-project.eu}} (Lars Kunze, Nick Hawes, Bruno Lacerda) were part of \teamori\ at its beginnings, the capabilities of our system were initially built upon the capabilities developed within the STRANDS project. The STRANDS Project deployed autonomous mobile robots (MetraLabs SCITOS A5, see Fig.~\ref{fig:mk}) in a range of human-populated environments for long durations~\cite{strands@ram}. These robots provided a range of services to real users, similar to the tasks required in RoboCup. The enabling software used on the robots, the ROS-based \emph{STRANDS Core System} (SCS), therefore gave \teamori{} an ideal basis for development towards tasks in the @Home league. 
-
-%The SCS is open source, and \teamori{} will contribute to the continued maintenance of this substantial code base which is useful for our entire community. Although originally developed for MetraLabs robots, the SCS has recently been ported to other robots, and \teamori{} will contribute an open port of this software to the Toyota HSR. 
-
-% TODO - consider adding this back in, but in a condensed form
-%The SCS builds upon standard ROS components to provide the following capabilities, all of which have been tested in long-term deployments in real user environments: topological, human-aware robust navigation; object detection, identification and classification; autonomous online object learning; human detection, skeleton tracking, and activity analysis; basic human-robot interaction via speech and screen; and goal management and task planning. Our capabilities for person tracking~\cite{dondrup2015tracker} can be seen online\footnote{\url{https://youtu.be/zdnvhQU1YNo}} and formed the basis of many interactive behaviours, including social navigation, and activity learning and recognition~\cite{duckworth_aamas2016}, which are relevant to the WRS tasks. 
+Because key members of the EU STRANDS Project\footnote{\url{http://strands-project.eu}} (Lars Kunze, Nick Hawes, Bruno Lacerda) were part of \teamori{} at its beginnings, the capabilities of our system were initially built upon the capabilities developed within the STRANDS project. The STRANDS Project deployed autonomous mobile robots in a range of human-populated environments for long durations. These robots provided a range of services to real users, similar to the tasks required in RoboCup. The enabling software used on the robots, the ROS-based \emph{STRANDS Core System}, therefore gave \teamori{} an ideal basis for development towards tasks in the @Home league. 
 
 Since then, we have expanded our robot's capabilities by leveraging open-source software to create new sub-system functionality and combine them to produce new autonomous behaviours to perform service tasks in typical domestic environments.
 
@@ -206,7 +181,7 @@ This includes learning of skill representations from demonstrations \cite{Havout
 \subsection{Navigation}\label{sec:capability-navigation}
 Navigation is currently managed by the task-level planning subsystem, which implements a hierarchical SMACH state machine\footnote{http://wiki.ros.org/smach} to define sequences of states and actions that are combined to compose different tasks (e.g., navigate to a given position, turn to look at an object, retrieve an item, ask a human operator a question and listen for a response). Navigation actions are controlled via the \emph{move\_base} ROS Action server provided by the \emph{tmc\_move\_base} ROS package.
 
-Previously, we used a hierarchical navigation system from the STRANDS project. The navigation system was structured around a topological map, in which discrete locations were connected by directed edges~\cite{jpulido2015NowOrLater}. Edges corresponded to navigation actions the robot could perform to transition between locations. These may be standard \texttt{move\_base} actions, social navigation, closed loop controllers (such as wall following or door passing), or teach-and-repeat paths. This system has since been replaced, however, we will explore incorporating elements of topological navigation into the current navigation system to permit location-based action-selection, such as checking if a door is open, checking if a human is present for greeting, and following a human from a given start location.
+Previously, we used a hierarchical navigation system from the STRANDS project. The navigation system was structured around a topological map, in which discrete locations were connected by directed edges. Edges corresponded to navigation actions the robot could perform to transition between locations. These may be standard \texttt{move\_base} actions, social navigation, closed loop controllers (such as wall following or door passing), or teach-and-repeat paths. This system has since been replaced, however, we will explore incorporating elements of topological navigation into the current navigation system to permit location-based action-selection, such as checking if a door is open and checking if a human is present for greeting.
 
 \subsection{Perception}\label{sec:capability-perception}
 Perception allows the robot to use the visual and depth input from its RGB-D cameras to determine the identity and location of objects in the surroundings. \teamori{} have implemented a Faster R-CNN model with a ResNet-50-FPN backbone \cite{ren2016faster}, which have been pre-trained on the COCO datasets. The current image from the camera is input into the model, which outputs a bounding box for an object, the object's identity, and the confidence level. We then process the output by applying non-maximum suppression to the set of outputs to remove duplicate detections, then apply a minimum confidence threshold.
@@ -214,9 +189,12 @@ Perception allows the robot to use the visual and depth input from its RGB-D cam
 Our future work focuses on two areas, the first being improving the object detection by fine tuning the model to more accurately detect domestic objects, which are encountered more frequently in the household environment than other types of objects. This will be done by training the model further with datasets comprised of household objects. The second area of focus is creating a separate human detection model. Currently, the object detector is able to detect a human with high reliability. However, we would like to develop this further, such that the human detector can identify unique traits of people, and thus allow for future work in searching for specific people.
 
 
-\subsection{Semantic Mapping (Ricardo and Matthew Munks to review)}
+\subsection{Semantic Mapping}
+Learning and recognising objects during operation, and reasoning about them, are key tasks for a mobile service robot in human environments.
 
-Learning and recognising objects during operation is a key task for a mobile service robot in human environments. \teamori{} will exploit the work done in the STRANDS Project in terms of autonomous object learning plus the recognition and modelling of previously unseen objects. The work is based on the \emph{meta-room} approach which builds dense RGB-D reconstructions of regions around locations in the robot's topological map. Objects are found through inspecting or differencing meta-rooms. Surfaces and possible objects found in meta-rooms become either targets for more detailed view planning~\cite{kunze14indirect} (see Figure~\ref{fig:mk}) leading to recognition, or for autonomous object learning~\cite{Faeulhammer:2016}. Our recognition pipeline mixes top-down semantic reasoning with bottom-up appearance-based processing for scene understanding \cite{kunze14topdown}, jointly estimating object locations and categories based on qualitative spatial models \cite{kunze14bootstrapping}. The object learning process can build detailed 3D models entire without supervision~\cite{Faeulhammer:2016}. Previously unknown  objects are processed with a mix of deep vision and semantic web technologies to provide the robot with an initial estimate of their identity~\cite{aloof@icra17}.
+Our semantic mapping sub-system maintains a semantic object map to track the positions of objects, based on their class (e.g., book, water bottle, apple). It is implemented on top of a MongoDB database. One functionality of the semantic object map is to evaluate queries on relative position relationships between objects (e.g., is object A \emph{above} object B?, are there any objects \emph{to the left} of object C?, are there any objects \emph{in the living room}?). The semantic map can also compute the semantic class similarity between two objects (e.g., how semantically similar is an apple to a banana?, how about to a book?) using the OWL ontology format. 
+
+Further, \teamori{} will exploit the STRANDS semantic mapping work to segment the robot's map into semantically meaningful partitions (e.g., living room, kitchen). We will integrate this with our existing semantic object search, in which the robot selects navigation actions to optimise the probability of finding a previously unseen object based on the likelihood of its object class being found in particular rooms (e.g., a bottle of water is more likely to be found in the kitchen than the bathroom).
 
 \subsection{ORI Original Research}
 
@@ -227,46 +205,15 @@ Learning and recognising objects during operation is a key task for a mobile ser
 \textbf{Motion Planning, Scene Reconstruction \& Gaze Control} - As part of his PhD research, former \teamori{} member Mark Finean has developed several whole-body motion planning methods for robots operating in dynamic environments \cite{finean2021predicted,finean2021simultaneous,finean2021i}. These methods are executed in real-time and incorporate predicted obstacle motions to avoid collisions. Mark's recent work includes a practical hybrid mapping and motion planning system to permit simultaneous scene reconstruction and collision avoidance, and a `smart' gaze controller that achieves effective perception of the environment for obstacle avoidance and motion planning in dynamic and unknown environments. In both works, the results were validated on \teamori{}'s HSR. Thus, \teamori{} can leverage these research efforts and extend the HSR's functionality for future competitions.
 
 \section{Robot System Integration and Experimentation}
-%TODO
-TODO - reduce this section and mention
-\begin{itemize}
-	\item simulation experimentation
-	\item lab/ORI experimentation
-\end{itemize}
-
 A substantial effort will be needed to develop behaviours that are robust to
-changes in the environment and to noise typical of real-world scenarios. In this
-respect we will exploit our experience from the STRANDS project 
-\cite{strands@ram} and build upon the tested SCS. Some of this software has already been integrated to our stack.
-Given the similarity of the HSR to the SCITOS platform, and other platforms the team are familiar with, %(e.g. through Lars Kunze's work on the PR2 for object search in a multi-story building~\cite{kunze12objsearch}\footnote{\url{https://www.youtube.com/watch?v=RIYRQC2iBp0}}), 
-we have ported parts of the
-SCS to the Toyota HSR. SCS was developed to be 
-expandable and is built with standard ROS components which are also supported 
-by the Toyota HSR. 
-Additionally, we are planning to build a mock-up of the ``house'' arena to
-allow us to run live robot trials and limit simulation use to the development
-phase. We aim to schedule recurring trials as our framework is developed, to
-ensure that robot behaviours are successful and to collect data on the 
-success probabilities of tasks and sequences of tasks.
+changes in the environment and to noise typical of real-world scenarios.
 
-\teamori{} benefits from the many years of experience of the team of creating integrated robot systems. Team members contributed to the first public demonstration of a self-driving car in the UK\footnote{\url{https://www.epsrc.ac.uk/newsevents/news/lutzpathfinder/}}, and all members have contributed to integrated robot systems demonstrated at science museums, public engagement events and trade shows across Europe. All of these systems integrate perception, planning and action in non-trivial ways. Such integration is central to producing a functional and reliable system, but can be incredibly challenging when trying to produce novel capabilities for robots in task environments which you are only able to experience a short time before a deadline. We had our
-first competition in October 2018 in the Partner Robot Challenge of WRS. 
-Most of the team members were part of this experience and now have demonstrated
-our team's ability to develop, integrate and test solutions on a very short
-time schedule; we achieved in competing given only 3 weeks of preparation. The team has since expanded to bring in more undergraduate and post-graduate students, enabling us to improve our stack to place $6^{th}$ out of 10 in the RoboCup@Home 2019 competition.
-The team's joint experience of bringing diverse robot capabilities together for successful demos will enable the team to start working effectively very quickly, and to deal with common team and system teething problems smoothly. Our experience on systems which span the capability spectrum from low-level sensing to high-level cognition means that the diverse capabilities described above will be successfully integrated to produce a competitive entry in the RoboCup@Home 2020 competition.
+We have recently grown our team by more than double, by recruiting and training additional postgraduate and undergraduate students from Oxford University, with the aim of expanding our HSR's capabilities across all sub-systems and verifying them in preparation for the \robocuptitleshort{} competition. We have re-organised our team structure to better reflect the tasks required by the competition, and refocused our efforts to build functionality to achieve these tasks.
 
-\section{Applicability and Re-Usability of the System}
-%     \item Re-usability of the system for other research groups
-%     \item Applicability of the approach in the real world
-
-%TODO
-TODO - review and clean up this section
-
-The continued maintenance and development of the SCS will provide a well-tested software framework for mobile service robots. Continuing the practice started by the STRANDS Project, we will make extensions to the SCS available as open source software. This will enable our core framework to be reusable by other groups. The validity of this approach has already been demonstrated by the reuse of the SCS at labs including the Intelligent Robots and Systems group at the Institute for Systems and Robotics, Lisbon, and at Honda Research Institute Europe. The aforementioned use of the majority of our technology within systems which have already been successfully demonstrated in real challenging service robot environments shows that our approach is applicable in the real world.
+To further support this goal, we plan to build a mock household testing environment within the ORI building, using existing household furniture and prop items purchased for previous RoboCup and WRS competitions. This experimentation space to allow us to run live robot trials and perform hardware validation. Further, we will use the provided RoboCup@Home Gazebo simulation environment and HSR model for rapid prototyping and testing of novel software functionality, to thus allow for flexible, efficient, and collaborative development.
 
 \section{Current Software Stack For Domestic Tasks}\label{sec:current-software-stack-for-domestic-tasks}
-\textbf{Task-Level Planning} - The task-level planning sub-system acts as the executive controller of the robot system. Autonomous behaviours are defined through the use of hierarchical SMACH state machines, which combine abilities provided by other sub-systems, accessible via ROS Action servers. This composition of sub-system abilities permits the HSR to perform useful tasks in a domestic environment (e.g., fetching a bottle of water for a human, storing an object on a shelf, asking a human what it can do to help). The task-level planning sub-system interacts directly with the \emph{`tmc\_move\_base'} ROS package for navigation (see \nameref{sec:capability-navigation} \ref{sec:capability-navigation}).
+\textbf{Task-Level Planning} - The task-level planning sub-system acts as the executive controller of the robot system. Autonomous behaviours are defined through the use of hierarchical SMACH state machines, which combine abilities provided by other sub-systems, accessible via ROS Action servers. This composition of sub-system abilities permits the HSR to perform useful tasks in a domestic environment (e.g., fetching a bottle of water for a human.
 
 \textbf{Human-Robot Interaction via Speech} - For interacting with the robot using natural language, we have developed a subsystem that performs classification of speech commands. 
 This system interfaces with the cloud-based Google Speech-to-Text\footnote{\url{https://cloud.google.com/speech-to-text/}} as well as locally executable methods such as PocketSphinx\footnote{\url{https://github.com/cmusphinx/pocketsphinx}} and a pre-trained WaveNet\footnote{\url{https://github.com/buriburisuri/speech-to-text-wavenet}}~\cite{oord2016wavenet} as fallback options when an internet connection is not available. 
