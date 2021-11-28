@@ -200,9 +200,9 @@ the Partner Robot Challenge arena at WRS 2018 and RoboCup 2019, where our HSR ne
 different parts of the environment and stop before a closed
 door is opened.
 
+
 \subsection{Perception}\label{sec:capability-perception}
-Perception allows the robot to use the visual and depth input from its RGB-D cameras to determine the identity and location of objects in the surroundings. \teamori{} have implemented a Faster R-CNN model with a ResNet-50-FPN backbone \cite{}, %TODO
-which have been pre-trained on the COCO datasets. The current image from the camera is input into the model, which outputs a bounding box for an object, the object's identity, and the confidence level. We then process the output by applying non-maximum suppression to the set of outputs to remove duplicate detections, then apply a minimum confidence threshold.
+Perception allows the robot to use the visual and depth input from its RGB-D cameras to determine the identity and location of objects in the surroundings. \teamori{} have implemented a Faster R-CNN model with a ResNet-50-FPN backbone \cite{ren2016faster}, which have been pre-trained on the COCO datasets. The current image from the camera is input into the model, which outputs a bounding box for an object, the object's identity, and the confidence level. We then process the output by applying non-maximum suppression to the set of outputs to remove duplicate detections, then apply a minimum confidence threshold.
 
 Our future work focuses on two areas, the first being improving the object detection by fine tuning the model to more accurately detect domestic objects, which are encountered more frequently in the household environment than other types of objects. This will be done by training the model further with datasets comprised of household objects. The second area of focus is creating a separate human detection model. Currently, the object detector is able to detect a human with high reliability. However, we would like to develop this further, such that the human detector can identify unique traits of people, and thus allow for future work in searching for specific people.
 
