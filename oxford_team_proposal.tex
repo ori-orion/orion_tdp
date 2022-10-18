@@ -194,7 +194,7 @@ Learning and recognising objects during operation, and reasoning about them, are
 
 % Further, \teamori{} will exploit the STRANDS semantic mapping work to segment the robot's map into rooms (e.g., living room, kitchen). We will integrate this with our existing semantic object search functionality, in which the robot selects navigation actions to maximise the probability of finding a previously unseen object based on the likelihood of its object class being in certain rooms (e.g., an apple is more likely to be found in the kitchen than the bathroom).
 
-The system has been designed to be very extendable, with ROS message definitions to store/retrieve being stored at runtime. This makes for a very flexible system, one that can be added to very easily.
+The system has been designed to be very extendable, with ROS message definitions to store/retrieve being stored at runtime. This makes for a very flexible system, one that can be added to very easily. We also have the capability to check for the persistence of an object. If an observation comes in of the same class and at the same rough location as an object already stored, then that object is updated. 
 
 \subsection{ORI Original Research}
 
