@@ -192,7 +192,9 @@ Our future work focuses on two areas, the first being improving the object detec
 \subsection{Semantic Mapping}
 Learning and recognising objects during operation, and reasoning about them, are key tasks for a mobile service robot in human environments. Our semantic mapping sub-system maintains a semantic object map to track the positions of objects based on their class (e.g., book, water bottle). It is implemented on top of a MongoDB database. One functionality of the semantic object map is to evaluate queries on relative position relationships between objects (e.g., is object A \emph{above} object B?, are there any objects \emph{in the living room}?). The semantic map can also compute how semantically similar two object classes are (e.g., how semantically similar is an apple to a banana?) using the OWL ontology format. 
 
-Further, \teamori{} will exploit the STRANDS semantic mapping work to segment the robot's map into rooms (e.g., living room, kitchen). We will integrate this with our existing semantic object search functionality, in which the robot selects navigation actions to maximise the probability of finding a previously unseen object based on the likelihood of its object class being in certain rooms (e.g., an apple is more likely to be found in the kitchen than the bathroom).
+% Further, \teamori{} will exploit the STRANDS semantic mapping work to segment the robot's map into rooms (e.g., living room, kitchen). We will integrate this with our existing semantic object search functionality, in which the robot selects navigation actions to maximise the probability of finding a previously unseen object based on the likelihood of its object class being in certain rooms (e.g., an apple is more likely to be found in the kitchen than the bathroom).
+
+The system has been designed to be very extendable, with ROS message definitions to store/retrieve being stored at runtime. This makes for a very flexible system, one that can be added to very easily.
 
 \subsection{ORI Original Research}
 
