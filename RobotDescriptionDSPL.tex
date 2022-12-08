@@ -27,13 +27,13 @@ We use a standard DSPL HSR robot from \textit{Toyota}. No modifications have bee
 \textit{For our robot we are using the following software:}
 
 \begin{itemize}
-	\item Platform: Ubuntu 18.04, ROS Melodic (upgrade to Ubuntu 20.04 / ROS Noetic planned for 2022)
+	\item Platform: Ubuntu 20.04 / ROS Noetic
 	\item Task-level planning: SMACH ROS library
-	\item Navigation: \textit{tmc\_move\_base} ROS package
+	\item Navigation: \textit{tmc\_move\_base} ORI Topological map and ROS package\footnote{http://github.com/ori-orion/orion\_topological}
 	\item Semantic mapping: \emph{semantic\_mapping}*, \mbox{MongoDB}
-	\item Object recognition and pose estimation: Faster R-CNN model with ResNet-50-FPN backbone
+	\item Object recognition and pose estimation: Faster R-CNN model with ResNet-50-FPN backbone \\ (Yolov7 and StrongSORT planned for early 2023)
 	\item 3D occupancy mapping: OctoMap\footnote{https://octomap.github.io}
-	\item Arm control and gripper coordination: Toyota HSR Motion Interface
+	\item Arm control and gripper coordination: Toyota HSR Motion Interface (ROS MoveIT planned for early 2023)
 	\item Grasp pose synthesis: Grasp Pose Detection  (GPD)\footnote{https://github.com/atenpas/gpd}, Grasp Pose Generator (GPG)\footnote{https://github.com/atenpas/gpg}
 	\item Speech recognition: PocketSphinx and Wavenet (offline speech recognition), Levenshtein\footnote{https://github.com/maxbachmann/Levenshtein} (semantic similarity checking), WordNet (synonym checking) 
 \end{itemize}
@@ -49,7 +49,6 @@ We use a standard DSPL HSR robot from \textit{Toyota}. No modifications have bee
 	\item Alienware laptop in robot mount (for object recognition and pose estimation)
 \end{itemize}
 
-In 2022, we will explore transitioning object detection from the external Alienware laptop, and grasp pose synthesis from the HSR CPU, to the HSR GPU (NVIDIA Jetson) to better utilise the HSR GPU hardware.
 
 \section*{Cloud Services}
 % Please describe in this section the Cloud Services and online software used by your robot.
